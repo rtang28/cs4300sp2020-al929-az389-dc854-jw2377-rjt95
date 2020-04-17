@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
+import TagInput from './TagInput';
 
-export default function Search() {
-  return (
-    <div id='placeholder'></div>
-  );
+export default class Search extends Component {
+
+  render() {
+    return (
+      <div className='keyword-search'>
+        <TagInput />
+      </div>
+    );
+  }
 }
