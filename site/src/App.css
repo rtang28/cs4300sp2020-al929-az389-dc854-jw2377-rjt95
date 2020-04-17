@@ -5,7 +5,7 @@ body {
 .tag-input {
   background: white;
   border: 1px solid darkgray;
-  border-radius: 2px;
+  border-radius: 4px;
   display: flex;
   flex-wrap: wrap;
   padding: 8px 8px;
@@ -26,7 +26,7 @@ body {
 .tag-list li {
   align-items: center;
   background: #85A3BF;
-  border-radius: 2px;
+  border-radius: 4px;
   color: white;
   display: flex;
   font-weight: 300;
@@ -34,6 +34,19 @@ body {
   margin-bottom: 5px;
   margin-right: 5px;
   padding: 5px 10px;
+}
+
+.tag-list li button {
+  align-items: center;
+  appearance: none;
+  border: none;
+  border-radius: 50%;
+  display: inline-flex;
+  font-size: small;
+  height: 18px;
+  justify-content: center;
+  margin-left: 8px;
+  width: 18px;
 }
 
 .tag-input input {
