@@ -1,13 +1,15 @@
-import React, {Component} from 'react';
-import TagInput from './TagInput';
+import React, { useState } from 'react';
+import KeywordInput from './KeywordInput';
 
-export default class Search extends Component {
+const Search = () => {
+  const [keywords, updateKeywords] = useState([]);
 
-  render() {
-    return (
-      <div className='keyword-search'>
-        <TagInput />
-      </div>
-    );
-  }
+  return (
+    <div className='keyword-search'>
+      <KeywordInput keywords={keywords} handleChange={updateKeywords}/>
+    </div>
+  );
+
 }
+
+export default Search;

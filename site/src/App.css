@@ -1,8 +1,10 @@
-
+body {
+  padding: 12px;
+}
 
 .tag-input {
   background: white;
-  border: 1px solid lightcyan;
+  border: 1px solid darkgray;
   border-radius: 2px;
   display: flex;
   flex-wrap: wrap;
