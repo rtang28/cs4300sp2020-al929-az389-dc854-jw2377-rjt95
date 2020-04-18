@@ -11,17 +11,16 @@ class SmartSearch:
         #TODO implement me
         return []
 
-
 class BasicSearch:
     def search(self, query):
         results = [
             {
                 'name': 'McDonalds',
-                'score': 1,
+                'score': 1
             },
             {
-                'type': 'Five Guys',
-                'score': 0,
+                'name': 'Five Guys',
+                'score': 0
             }
         ]
         return results
