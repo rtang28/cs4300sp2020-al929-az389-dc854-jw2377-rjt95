@@ -11,7 +11,6 @@ class SmartSearch:
         #TODO implement me
         return []
 
-
 class BasicSearch:
     def search(self, query):
         results = [

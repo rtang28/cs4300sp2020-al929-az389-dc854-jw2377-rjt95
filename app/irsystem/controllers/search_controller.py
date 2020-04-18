@@ -8,9 +8,9 @@ search_model = BasicSearch()
 
 @irsystem.route('/search', methods=['GET'])
 def search():
-    query = request.args.get('q', default=None)
+    query = request.args.get('q', None)
     if query:
-		results = search_model.search(query)
+        results = search_model.search(query)
     else:
-		results = []
-    return http_resource(results, 'results')
+        results = []
+    return http_resource(results, "results")
