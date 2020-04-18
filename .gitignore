@@ -8,7 +8,12 @@ vagrant/a4keypair.pem
 *.iml
 .vscode/
 
+app/static/css
+app/static/js
+app/static/media
+app/static/favicon
+app/static/favicon.ico
+app/static/manifest.json
+app/templates/index.html
+
 build/
-.DS_Store
-app/static/*
-!app/static/*.css
