@@ -31,19 +31,19 @@ const KeywordInput = ({ keywords, handleChange }) => {
   return (
     <div className='tag-input'>
       <ul className='tag-list'>
-        { keywords.map((word, i) => {
-            return (
-              <li key={word}>
-                {word}
-                <button type='button' onClick={() => { removeWord(i) }}>x</button>
-              </li>
-            );
-          })}
+        {keywords.map((word, i) => {
+          return (
+            <li key={word}>
+              {word}
+              <button type='button' onClick={() => { removeWord(i) }}>x</button>
+            </li>
+          );
+        })}
         <li className='tag-input-field'>
           <input type='text'
-                  onKeyUp={inputEnter}
-                  ref={inputField}
-                  placeholder={keywords.length ? '' : 'Enter some keywords...'}>
+            onKeyUp={inputEnter}
+            ref={inputField}
+            placeholder={keywords.length ? '' : 'Enter some keywords...'}>
           </input>
         </li>
       </ul>

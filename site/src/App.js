@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Search from './search/Search';
 import './App.css';
@@ -36,6 +36,7 @@ export default class App extends Component {
 class Home extends Component {
   render() {
     return (
+
       <Fragment>
         <h3>Home!</h3>
         <Search></Search>
