@@ -1,8 +1,5 @@
 {
     "scripts": {
         "heroku-postbuild": "cd site && npm install && npm run build && npm run copy"
-    },
-    "dependencies": {
-        "react-router-dom": "^5.0.0"
     }
 }
