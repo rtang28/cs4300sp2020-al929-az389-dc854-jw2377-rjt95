@@ -6,7 +6,7 @@ import '../index.css';
 /**
  * Implements a dropdown menu that selects locations. Uses a hook to
  * update the state in Search.js to reflect this selection.
- * @param {*} param0 
+ * Loosely based off this: https://blog.logrocket.com/building-a-custom-dropdown-menu-component-for-react-e94f02ced4a1/
  */
 const LocationSelector = ({ locations, selected, setSelected }) => {
     const [listOpen, setListOpen] = useState(false);
