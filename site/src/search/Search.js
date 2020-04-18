@@ -32,6 +32,22 @@ const Search = () => {
     }
   ];
 
+  const buildQueryURLFromState = (currKeywords, currSelected) => {
+    // TODO implement
+    return '';
+  };
+
+  const queryAPI = async (queryURL) => {
+    let response = await(fetch(queryURL));
+    let json = await(response.json());
+    return json;
+  };
+
+  const performSearch = () => {
+    const URL = buildQueryURLFromState(keywords, selected);
+    const results = queryAPI(URL);
+  };
+
   return (
     <div>
       <div className='keyword-search'>
@@ -46,7 +62,6 @@ const Search = () => {
       </div>
     </div>
   );
-
 }
 
 export default Search;
