@@ -10,7 +10,7 @@ def index():
 project_name = "Restaurant Match"
 net_id = "Alan Lin (al929), Jason Wong (jw2377), Ryan Tang (rjt95), Andy Zhu (az389), David Chen (dc8454)"
 
-@base.route('/dummy', methods=['GET'])
+@base.route('/samplepage', methods=['GET'])
 def search():
 	query = request.args.get('search')
 	if not query:
