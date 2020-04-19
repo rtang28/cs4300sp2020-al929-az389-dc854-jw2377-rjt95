@@ -30,7 +30,7 @@ class SmartSearch:
         self.averages = averages[averages["business_id"].isin(self.gems)]
 
     def search(self, query, zipcode):
-        return self.query(query.split(','), zipcode)
+        return self.query(zipcode, query.split(','))
     
     def vectorize_query(self, query): 
         #Returns a vector representation of the tokens the user inputs
