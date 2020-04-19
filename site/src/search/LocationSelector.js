@@ -58,7 +58,7 @@ const LocationSelector = ({ locations, selected, setSelected }) => {
             {listOpen && <ul className="dd-list">
                 {
                     locations.map((item) => (
-                        <li className="dd-list-item" onClick={() => handleSelect(item.id)}>{item.title}</li>
+                        <li key={item.id} className="dd-list-item" onClick={() => handleSelect(item.id)}>{item.title}</li>
                     ))
                 }
             </ul>}

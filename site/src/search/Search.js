@@ -4,7 +4,7 @@ import LocationSelector from './LocationSelector';
 
 const Search = () => {
   const [keywords, updateKeywords] = useState([]);
-  const [selected, updateSelected] = useState(0);
+  const [selected, updateSelected] = useState(-1);
   const locations = [
     {
       id: 0,
@@ -33,19 +33,30 @@ const Search = () => {
   ];
 
   const buildQueryURLFromState = (currKeywords, currSelected) => {
-    // TODO implement
-    return '';
+    let baseURL = `${window.location}search`;
+    let keywordsString = currKeywords.toString().replace(/ /g, '%20');
+    let locString = `${currSelected}`;
+    baseURL += `${(currKeywords ? '?keywords=' + keywordsString : '')}`;
+    if (currSelected >= 0)
+      baseURL += `${(currKeywords ? '&' : '?')}zip=${locString}`;
+
+    return baseURL;
   };
 
-  const queryAPI = async (queryURL) => {
-    let response = await(fetch(queryURL));
+  const queryAPI = async () => {
+    // const queryURL = buildQueryURLFromState(keywords, selected);
+    const queryURL = `${window.location}search`;
+    let response = await(fetch(queryURL, { method: 'GET' }));
+    console.log(response);
     let json = await(response.json());
-    return json;
+    console.log(json);
   };
 
   const performSearch = () => {
     const URL = buildQueryURLFromState(keywords, selected);
-    const results = queryAPI(URL);
+    console.log(URL);
+    // const results = queryAPI('https://pokeapi.co/api/v2/pokemon/ditto');
+    // console.log(results);
   };
 
   return (
@@ -60,6 +71,7 @@ const Search = () => {
           setSelected={updateSelected}
         />
       </div>
+      <button onClick={queryAPI}>Search!</button>
     </div>
   );
 }
