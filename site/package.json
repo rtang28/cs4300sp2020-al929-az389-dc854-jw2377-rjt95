@@ -1,6 +1,8 @@
 {
   "name": "site",
+  "homepage": "/",
   "version": "0.1.0",
+  "proxy": "http://localhost:5000",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -17,21 +19,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "copy": "cp -r build/static/* ../app/static/ && cp build/manifest.json ../app/static/ && cp build/index.html ../app/templates/index.html"
+    "copy": "cp -r build/static/* ../app/static/ && cp build/manifest.json ../app/static/ && cp build/index.html ../app/templates/index.html && echo \"hello world\""
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ]
 }
