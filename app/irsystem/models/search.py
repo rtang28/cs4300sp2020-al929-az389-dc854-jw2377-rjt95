@@ -63,12 +63,13 @@ class SmartSearch:
             #Take (likes vector - dislikes vector + query vector) and plug that into nearest_neighbors
         """
 
-        #Narrow down by Zip 
-        # if zipcode:
-        #     averages = gems_averages[gems_averages["zip_code"] == zipcode]
-        
+        # Narrow down by Zip
+        if zipcode:
+            q_averages = self.averages[self.averages["zip_code"] == zipcode]
+        else:
+            q_averages = self.averages
         #Must drop those columns because we only want the matrix
-        nearest_15 = self.nearest_neighbors(query_vector,  self.averages.drop(columns=["zip_code", "name", "business_id"]))
+        nearest_15 = self.nearest_neighbors(query_vector,  q_averages.drop(columns=["zip_code", "name", "business_id"]))
         
         #Load Results into a list of dictionaries
         res = []
@@ -76,7 +77,7 @@ class SmartSearch:
             try:
                 res.append(
                     {
-                        "name" : self.averages["name"][df_index], 
+                        "name" : q_averages["name"][df_index], 
                         "distance" : nearest_15[0][i]
                     })
             except:
@@ -88,11 +89,11 @@ class BasicSearch:
         results = [
             {
                 'name': 'McDonalds',
-                'score': 1
+                'distance': 1
             },
             {
                 'name': 'Five Guys',
-                'score': 0
+                'distance': 0
             }
         ]
         return results
