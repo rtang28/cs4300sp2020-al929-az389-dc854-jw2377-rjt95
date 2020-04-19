@@ -32,13 +32,10 @@ const Search = () => {
       title: 'Oslo',
     }
   ];
-  const sampleResults = [
-    { "distance": 0.6297220762567558, "name": "Marius Bakery" },
-    { "distance": 0.6323891210203966, "name": "Yumz Gourmet Frozen Yogurt" },
-    { "distance": 0.6471987514747103, "name": "\u00d4 Th\u00e9" },
-    { "distance": 0.6547161429380265, "name": "Walgreens" },
-    { "distance": 0.6555765604600512, "name": "Korea Town Plaza Food Court" }
-  ];
+  const [results, updateResults] = useState([{
+    name: "mcdonalds",
+    distance: 1
+  }]);
 
   const buildQueryURLFromState = (currKeywords, currSelected) => {
     let baseURL = `${window.location}search`;
@@ -52,19 +49,13 @@ const Search = () => {
   };
 
   const queryAPI = async () => {
-    // const queryURL = buildQueryURLFromState(keywords, selected);
-    const queryURL = `${window.location}search`;
+    const queryURL = buildQueryURLFromState(keywords, selected);
+    // const queryURL = `${window.location}search`;
     let response = await (fetch(queryURL, { method: 'GET' }));
     console.log(response);
     let json = await (response.json());
     console.log(json);
-  };
-
-  const performSearch = () => {
-    const URL = buildQueryURLFromState(keywords, selected);
-    console.log(URL);
-    // const results = queryAPI('https://pokeapi.co/api/v2/pokemon/ditto');
-    // console.log(results);
+    updateResults(json.data.results);
   };
 
   return (
@@ -82,7 +73,7 @@ const Search = () => {
       <button onClick={queryAPI}>Search!</button>
       <div className='results'>
         <Results
-          results={sampleResults}
+          results={results}
         />
       </div>
     </div>

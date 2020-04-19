@@ -9,7 +9,7 @@ const ResultCard = ({ name, distance }) => {
                         <h5 className="card-title mb-0">{name}</h5>
                     </div>
                     <div className="score">
-                        score: {distance}
+                        distance: {distance}
                     </div>
                 </div>
             </div>
