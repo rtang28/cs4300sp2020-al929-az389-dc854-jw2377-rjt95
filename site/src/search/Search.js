@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import KeywordInput from './KeywordInput';
 import LocationSelector from './LocationSelector';
+import Results from './Results';
 
 const Search = () => {
   const [keywords, updateKeywords] = useState([]);
@@ -31,6 +32,13 @@ const Search = () => {
       title: 'Oslo',
     }
   ];
+  const sampleResults = [
+    { "distance": 0.6297220762567558, "name": "Marius Bakery" },
+    { "distance": 0.6323891210203966, "name": "Yumz Gourmet Frozen Yogurt" },
+    { "distance": 0.6471987514747103, "name": "\u00d4 Th\u00e9" },
+    { "distance": 0.6547161429380265, "name": "Walgreens" },
+    { "distance": 0.6555765604600512, "name": "Korea Town Plaza Food Court" }
+  ];
 
   const buildQueryURLFromState = (currKeywords, currSelected) => {
     let baseURL = `${window.location}search`;
@@ -46,9 +54,9 @@ const Search = () => {
   const queryAPI = async () => {
     // const queryURL = buildQueryURLFromState(keywords, selected);
     const queryURL = `${window.location}search`;
-    let response = await(fetch(queryURL, { method: 'GET' }));
+    let response = await (fetch(queryURL, { method: 'GET' }));
     console.log(response);
-    let json = await(response.json());
+    let json = await (response.json());
     console.log(json);
   };
 
@@ -72,6 +80,11 @@ const Search = () => {
         />
       </div>
       <button onClick={queryAPI}>Search!</button>
+      <div className='results'>
+        <Results
+          results={sampleResults}
+        />
+      </div>
     </div>
   );
 }

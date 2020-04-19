@@ -7,7 +7,7 @@ import '../index.css';
  * update the state in Search.js to reflect this selection.
  * Loosely based off this: https://blog.logrocket.com/building-a-custom-dropdown-menu-component-for-react-e94f02ced4a1/
  */
-const LocationSelector = ({ locations, selected, setSelected }) => {
+const LocationSelector = ({ locations, setSelected }) => {
     const [listOpen, setListOpen] = useState(false);
     const [header, setHeader] = useState("Choose Location...");
     /**
