@@ -2,15 +2,16 @@ from . import *
 from app.irsystem.models.helpers import *
 from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
 
-from ..models.search import BasicSearch
+from ..models.search import SmartSearch
 
-search_model = BasicSearch()
+search_model = SmartSearch()
 
 @irsystem.route('/search', methods=['GET'])
 def search():
-    query = request.args.get('q', default=None)
-    if query:
-		results = search_model.search(query)
-    else:
+	keywords = request.args.get('keywords', None)
+	zipcode = request.args.get('zip', None)
+	if keywords:
+		results = search_model.search(keywords, zipcode)
+	else:
 		results = []
-    return http_resource(results, 'results')
+	return http_resource(results, "results")
