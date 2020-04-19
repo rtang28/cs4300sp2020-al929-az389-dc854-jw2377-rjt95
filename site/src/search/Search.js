@@ -32,10 +32,7 @@ const Search = () => {
       title: 'Oslo',
     }
   ];
-  const [results, updateResults] = useState([{
-    name: "mcdonalds",
-    distance: 1
-  }]);
+  const [results, updateResults] = useState([]);
 
   const buildQueryURLFromState = (currKeywords, currSelected) => {
     let baseURL = `${window.location}search`;
@@ -49,13 +46,15 @@ const Search = () => {
   };
 
   const queryAPI = async () => {
-    const queryURL = buildQueryURLFromState(keywords, selected);
-    // const queryURL = `${window.location}search`;
-    let response = await (fetch(queryURL, { method: 'GET' }));
-    console.log(response);
-    let json = await (response.json());
-    console.log(json);
-    updateResults(json.data.results);
+    if (keywords.length > 0 || selected >= 0) {
+      const queryURL = buildQueryURLFromState(keywords, selected);
+      // const queryURL = `${window.location}search`;
+      let response = await (fetch(queryURL, { method: 'GET' }));
+      console.log(response);
+      let json = await (response.json());
+      console.log(json);
+      updateResults(json.data.results);
+    }
   };
 
   return (
