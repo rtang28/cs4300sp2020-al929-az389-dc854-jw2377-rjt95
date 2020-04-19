@@ -68,6 +68,8 @@ class SmartSearch:
             q_averages = self.averages[self.averages["zip_code"] == zipcode]
         else:
             q_averages = self.averages
+        if len(q_averages) == 0:
+            q_averages = self.averages
         #Must drop those columns because we only want the matrix
         nearest_15 = self.nearest_neighbors(query_vector,  q_averages.drop(columns=["zip_code", "name", "business_id"]))
         
