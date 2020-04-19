@@ -15,7 +15,6 @@ const LocationSelector = ({ locations, setSelected }) => {
      */
     useEffect(() => {
         setTimeout(() => {
-
             if (listOpen) {
                 window.addEventListener('click', closeList)
             }
@@ -44,7 +43,6 @@ const LocationSelector = ({ locations, setSelected }) => {
         closeList();
         setHeader(locations[id].title);
     };
-
 
     return (
         <div className="dd-wrapper">
