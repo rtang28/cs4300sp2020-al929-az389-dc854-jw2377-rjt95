@@ -61,8 +61,7 @@ p {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  line-height: 38px;
-  border: 1px solid #dfdfdf;
+  border: 1px solid darkgray;
   border-radius: 3px;
   cursor: default;
   position: relative;
