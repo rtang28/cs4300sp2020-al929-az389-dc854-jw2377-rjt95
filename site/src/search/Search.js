@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import KeywordInput from './KeywordInput';
 import LocationSelector from './LocationSelector';
 import Results from './Results';
@@ -6,6 +6,8 @@ import Results from './Results';
 const Search = () => {
   const [keywords, updateKeywords] = useState([]);
   const [selected, updateSelected] = useState(-1);
+  const [likes, updateLikes] = useState([]);
+  const [dislikes, updateDislikes] = useState([]);
   const locations = [
     {
       id: 0,
@@ -66,25 +68,42 @@ const Search = () => {
     }
   };
 
+  const formSubmit = e => {
+    queryAPI();
+    e.preventDefault(e);
+  }
+
   return (
-    <div>
-      <div className='keyword-search'>
-        <KeywordInput keywords={keywords} handleChange={updateKeywords} />
-      </div>
-      <div className='location-selector'>
-        <LocationSelector
-          locations={locations}
-          selected={selected}
-          setSelected={updateSelected}
-        />
-      </div>
-      <button onClick={queryAPI}>Search!</button>
+    <Fragment>
+      <form className='search-area' onSubmit={formSubmit}>
+        <div className='form-row-1'>
+          <div className='keyword-search'>
+            <KeywordInput keywords={keywords} handleChange={updateKeywords} placeholderText={'Enter some keywords...'}/>
+          </div>
+          <div className='location-selector'>
+            <LocationSelector
+              locations={locations}
+              selected={selected}
+              setSelected={updateSelected}
+            />
+          </div>
+        </div>
+        <div className='form-row-2'>
+          <div className='input-restaurant likes'>
+            <KeywordInput keywords={likes} handleChange={updateLikes} placeholderText={'Enter some restaurants you like...'}/>
+          </div>
+          <div className='input-restaurant dislikes'>
+            <KeywordInput keywords={dislikes} handleChange={updateDislikes} placeholderText={'Enter some restaurants you don\'t like...'}/>
+          </div>
+        </div>
+        <button className='submit' type='submit'>Search!</button>
+      </form>
       <div className='results'>
         <Results
           results={results}
         />
       </div>
-    </div>
+    </Fragment>
   );
 }
 

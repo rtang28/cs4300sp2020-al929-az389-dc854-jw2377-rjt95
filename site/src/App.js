@@ -38,7 +38,7 @@ class Home extends Component {
   render() {
     return (
       <Fragment>
-        <h2>Restaurant Match</h2>
+        <h1>Restaurant Match</h1>
         <Search></Search>
       </Fragment>
     );

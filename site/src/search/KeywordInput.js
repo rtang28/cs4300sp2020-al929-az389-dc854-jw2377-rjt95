@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
  * Implements a text input box that displays entered phrases on the left side of the box.
  * Reference: https://medium.com/@jerrylowm/build-a-tags-input-react-component-from-scratch-1524f02acb9a
  */
-const KeywordInput = ({ keywords, handleChange }) => {
+const KeywordInput = ({ keywords, handleChange, placeholderText }) => {
   let inputField = createRef();
 
   const inputEnter = e => {
@@ -41,9 +41,9 @@ const KeywordInput = ({ keywords, handleChange }) => {
         })}
         <li className='tag-input-field'>
           <input type='text'
-            onKeyUp={inputEnter}
+            onKeyDown={inputEnter}
             ref={inputField}
-            placeholder={keywords.length ? '' : 'Enter some keywords...'}>
+            placeholder={keywords.length ? '' : placeholderText}>
           </input>
         </li>
       </ul>
@@ -53,7 +53,8 @@ const KeywordInput = ({ keywords, handleChange }) => {
 
 KeywordInput.propTypes = {
   keywords: PropTypes.arrayOf(PropTypes.string).isRequired,
-  handleChange: PropTypes.func.isRequired
+  handleChange: PropTypes.func.isRequired,
+  placeholderText: PropTypes.string
 }
 
 export default KeywordInput;
