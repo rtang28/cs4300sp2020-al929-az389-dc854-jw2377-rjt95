@@ -1,5 +1,5 @@
 {
-    "scripts": {
-        "heroku-postbuild": "react-scripts build && cd site && npm install && npm run build && npm run copy"
-    }
+  "scripts": {
+    "build": "cd site && npm install && npm run build && npm run copy"
+  }
 }
