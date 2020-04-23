@@ -20,8 +20,8 @@ const ResultCard = ({ name, distance }) => {
                         <div className="card-location">
                             <h6 className="card-rating-text">location placeholder</h6>
                         </div>
-                        <div className="card-location">
-                            <h6 className="card-keywords">keywords placeholder</h6>
+                        <div className="card-keywords">
+                            <h6 className="card-keywords-text">keywords placeholder</h6>
                         </div>
                     </div>
                 </div>

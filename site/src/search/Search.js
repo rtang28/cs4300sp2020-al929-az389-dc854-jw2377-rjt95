@@ -78,7 +78,7 @@ const Search = () => {
       <form className='search-area' onSubmit={formSubmit}>
         <div className='form-row-1'>
           <div className='keyword-search'>
-            <KeywordInput keywords={keywords} handleChange={updateKeywords} placeholderText={'Enter some keywords...'}/>
+            <KeywordInput keywords={keywords} handleChange={updateKeywords} placeholderText={'Enter some keywords...'} />
           </div>
           <div className='location-selector'>
             <LocationSelector
@@ -90,15 +90,15 @@ const Search = () => {
         </div>
         <div className='form-row-2'>
           <div className='input-restaurant likes'>
-            <KeywordInput keywords={likes} handleChange={updateLikes} placeholderText={'Enter some restaurants you like...'}/>
+            <KeywordInput keywords={likes} handleChange={updateLikes} placeholderText={'Enter some restaurants you like...'} />
           </div>
           <div className='input-restaurant dislikes'>
-            <KeywordInput keywords={dislikes} handleChange={updateDislikes} placeholderText={'Enter some restaurants you don\'t like...'}/>
+            <KeywordInput keywords={dislikes} handleChange={updateDislikes} placeholderText={'Enter some restaurants you don\'t like...'} />
           </div>
         </div>
         <button className='submit' type='submit'>Search!</button>
       </form>
-      <div className='results'>
+      <div className='results-area'>
         <Results
           results={results}
         />

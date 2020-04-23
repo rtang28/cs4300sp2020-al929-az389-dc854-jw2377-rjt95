@@ -1,24 +1,24 @@
 .card {
-    border: 2px solid;
-    border-radius: .2em;
-    border-color: black;
-    max-width: 800px;
-    align-self: center;
+    border: 1px solid darkgray;
+    border-radius: 4px;
+    /* max-width: 1200px; */
     margin-bottom: 10px;
+    background-color: whitesmoke;
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .rows {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    padding: 8px 8px;
 }
 .row1 {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-    flex: 1;
 }
 .row2 {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
