@@ -32,7 +32,16 @@ const Search = () => {
       title: 'Oslo',
     }
   ];
-  const [results, updateResults] = useState([]);
+  const [results, updateResults] = useState([
+    {
+      name: 'McDonalds',
+      distance: 1
+    },
+    {
+      name: 'Chick fil a',
+      distance: 1
+    }
+  ]);
 
   const buildQueryURLFromState = (currKeywords, currSelected) => {
     let baseURL = `${window.location}search`;
