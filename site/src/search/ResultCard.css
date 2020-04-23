@@ -1,3 +1,11 @@
+.card {
+    border: 2px solid;
+    border-radius: .2em;
+    border-color: black;
+    max-width: 800px;
+    align-self: center;
+    margin-bottom: 10px;
+}
 .rows {
     display:flex;
     flex-direction: column;
@@ -6,10 +14,11 @@
 .row1 {
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex: 1;
 }
 .row2 {
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
