@@ -5,7 +5,7 @@ import Results from './Results';
 
 const Search = () => {
   const [keywords, updateKeywords] = useState([]);
-  const [selected, updateSelected] = useState(-1);
+  const [location, updateLocation] = useState(-1);
   const [likes, updateLikes] = useState([]);
   const [dislikes, updateDislikes] = useState([]);
   const locations = [
@@ -36,20 +36,21 @@ const Search = () => {
   ];
   const [results, updateResults] = useState([]);
 
-  const buildQueryURLFromState = (currKeywords, currSelected) => {
+  const buildQueryURLFromState = (currKeywords, currLocation) => {
     let baseURL = `${window.location}search`;
     let keywordsString = currKeywords.toString().replace(/ /g, '%20');
-    let locString = `${currSelected}`;
+    let locString = `${currLocation}`;
     baseURL += `${(currKeywords ? '?keywords=' + keywordsString : '')}`;
-    if (currSelected >= 0)
+    if (currLocation >= 0)
       baseURL += `${(currKeywords ? '&' : '?')}zip=${locString}`;
 
     return baseURL;
   };
 
   const queryAPI = async () => {
-    if (keywords.length > 0 || selected >= 0) {
-      const queryURL = buildQueryURLFromState(keywords, selected);
+    if (keywords.length > 0 || location >= 0) {
+      const queryURL = buildQueryURLFromState(keywords, location);
+      console.log(queryURL);
       // const queryURL = `${window.location}search`;
       let response = await (fetch(queryURL, { method: 'GET' }));
       console.log(response);
@@ -74,8 +75,8 @@ const Search = () => {
           <div className='location-selector'>
             <LocationSelector
               locations={locations}
-              selected={selected}
-              setSelected={updateSelected}
+              selected={location}
+              setSelected={updateLocation}
             />
           </div>
         </div>
