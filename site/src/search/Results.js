@@ -1,5 +1,6 @@
 import React from 'react';
 import ResultCard from './ResultCard';
+import './Results.css'
 
 const Results = ({ results }) => {
     return (
