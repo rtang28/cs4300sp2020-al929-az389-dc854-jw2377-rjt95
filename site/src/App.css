@@ -3,7 +3,7 @@ h1 {
 }
 
 .search-area {
-  margin: 0% 10%;
+  margin: 0% 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +19,11 @@ h1 {
   flex-grow: 2;
 }
 
+.location-select {
+  border-radius: 4px;
+  flex-grow: 1;
+}
+
 .form-row-2 {
   display: flex;
   flex-direction: row;
@@ -27,6 +32,7 @@ h1 {
 
 .input-restaurant {
   flex-grow: 1;
+  min-width: 50px;
 }
 
 .search-area>button {

@@ -8,32 +8,14 @@ const Search = () => {
   const [location, updateLocation] = useState(-1);
   const [likes, updateLikes] = useState([]);
   const [dislikes, updateDislikes] = useState([]);
-  const locations = [
-    {
-      id: 0,
-      title: 'New York',
-    },
-    {
-      id: 1,
-      title: 'Dublin',
-    },
-    {
-      id: 2,
-      title: 'California',
-    },
-    {
-      id: 3,
-      title: 'Istanbul',
-    },
-    {
-      id: 4,
-      title: 'Izmir',
-    },
-    {
-      id: 5,
-      title: 'Oslo',
-    }
-  ];
+  const locations = {
+    0: 'New York',
+    1: 'Dublin',
+    2: 'California',
+    3: 'Istanbul',
+    4: 'Izmir',
+    5: 'Oslo'
+  };
   const [results, updateResults] = useState([
     {
       name: 'McDonalds',
@@ -83,9 +65,9 @@ const Search = () => {
           </div>
           <div className='location-selector'>
             <LocationSelector
-              locations={locations}
-              selected={location}
-              setSelected={updateLocation}
+              locations={Object.entries(locations)}
+              location={location}
+              setLocation={updateLocation}
             />
           </div>
         </div>
