@@ -17,7 +17,7 @@ export default class App extends Component {
                 <Link to="/about">About</Link>
               </li>
               <li className='prot1'>
-                <a href='https://restaurant-match.herokuapp.com'>Prototype 1</a>
+                <a href='https://restaurant-match-v1.herokuapp.com'>Prototype 1</a>
               </li>
               <li>
                 <a href='https://restaurant-match.herokuapp.com'>Prototype 2</a>

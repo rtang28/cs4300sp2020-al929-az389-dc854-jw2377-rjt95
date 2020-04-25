@@ -1,8 +1,5 @@
 {
   "scripts": {
-    "build": "cd site && npm install && npm run build && npm run copy"
-  },
-  "dependencies": {
-    "axios": "^0.19.2"
+    "heroku-postbuild": "cd site && npm install && npm run build && npm run copy"
   }
 }
