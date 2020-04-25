@@ -11,7 +11,10 @@ const Results = ({ results }) => {
           <ResultCard
             name={result.name}
             distance={result.distance}
-            key={result.name}
+            rating={result.rating}
+            url={result.url}
+            image_url={result.image_url}
+            location={result.location}
           />
         ))}
     </div>

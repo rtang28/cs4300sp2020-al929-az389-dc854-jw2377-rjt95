@@ -20,12 +20,10 @@ const Search = () => {
   };
   const [results, updateResults] = useState([
     {
-      name: 'McDonalds',
-      distance: 1
-    },
-    {
-      name: 'Chick fil a',
-      distance: 1
+      name: 'Gary Danko',
+      distance: 1,
+      categories: [],
+      id: 'WavvLdfdP6g8aZTtbBQHTw'
     }
   ]);
 
@@ -49,25 +47,31 @@ const Search = () => {
       console.log(response);
       let json = await (response.json());
       console.log(json);
-      updateResults(json.data.results);
+      var restaurants = json.data.results;
+      // updateResults(results);
+      queryYelpAPI(restaurants);
     }
   };
 
   const apiKey = process.env.REACT_APP_YELP_API_KEY;
 
-  const queryYelpAPI = () => {
-    const id = `WavvLdfdP6g8aZTtbBQHTw`;
-    axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/${id}`, {
-      headers: {
-        Authorization: `Bearer ${apiKey}`
-      },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+  const queryYelpAPI = async (restaurants) => {
+    try {
+      for (var i = 0; i < restaurants.length; i++) {
+        var yelp_data = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/${restaurants[i].id}`, {
+          headers: {
+            Authorization: `Bearer ${apiKey}`
+          },
+        })
+        restaurants[i].url = yelp_data.url;
+        restaurants[i].yelp_rating = yelp_data.rating;
+        restaurants[i].location = yelp_data.location.city;
+        restaurants[i].image_url = yelp_data.image_url;
+      }
+      updateResults(restaurants);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const formSubmit = e => {
