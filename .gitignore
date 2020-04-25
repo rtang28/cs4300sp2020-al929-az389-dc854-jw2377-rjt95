@@ -7,11 +7,11 @@ vagrant/a4keypair.pem
 .idea/
 *.iml
 .vscode/
+__pycache__/
 
-# build/
+build/
 .DS_Store
-# app/static/*
-# !app/static/*.css
+app/static/*
 
 .env
 node_modules
