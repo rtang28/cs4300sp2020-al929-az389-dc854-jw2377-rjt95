@@ -1,5 +1,6 @@
 import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
+import { ReactComponent as CloseIcon } from '../close-icon.svg';
 
 /**
  * Implements a text input box that displays entered phrases on the left side of the box.
@@ -9,6 +10,9 @@ const KeywordInput = ({ keywords, handleChange, placeholderText }) => {
   let inputField = createRef();
 
   const inputEnter = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
     const keyword = e.target.value.toLowerCase();
     if (e.key === 'Enter' && keyword) {
       if (!keywords.includes(keyword)) {
@@ -35,7 +39,9 @@ const KeywordInput = ({ keywords, handleChange, placeholderText }) => {
           return (
             <li key={word}>
               {word}
-              <button type='button' onClick={() => { removeWord(i) }}>x</button>
+              <button type='button' onClick={() => { removeWord(i) }}>
+                <CloseIcon />
+              </button>
             </li>
           );
         })}

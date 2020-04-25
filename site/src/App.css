@@ -1,4 +1,5 @@
-h1 {
+.title {
+  margin-top: 15vh;
   text-align: center;
 }
 
@@ -16,12 +17,15 @@ h1 {
 }
 
 .keyword-search {
-  flex-grow: 2;
+  flex: 2;
 }
 
 .location-select {
   border-radius: 4px;
-  flex-grow: 1;
+  flex: 1;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
 }
 
 .form-row-2 {
@@ -31,7 +35,7 @@ h1 {
 }
 
 .input-restaurant {
-  flex-grow: 1;
+  flex: 1;
   min-width: 50px;
 }
 
@@ -85,6 +89,11 @@ h1 {
   justify-content: center;
   margin-left: 8px;
   width: 18px;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
 }
 
 .tag-input input {
