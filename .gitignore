@@ -12,3 +12,5 @@ vagrant/a4keypair.pem
 .DS_Store
 # app/static/*
 # !app/static/*.css
+
+.env

@@ -3,6 +3,7 @@ import KeywordInput from './KeywordInput';
 import LocationSelector from './LocationSelector';
 import Results from './Results';
 import './Search.css';
+import axios from 'axios';
 
 const Search = () => {
   const [keywords, updateKeywords] = useState([]);
@@ -51,6 +52,23 @@ const Search = () => {
       updateResults(json.data.results);
     }
   };
+
+  const apiKey = process.env.REACT_APP_YELP_API_KEY;
+
+  const queryYelpAPI = () => {
+    const id = `WavvLdfdP6g8aZTtbBQHTw`;
+    axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/${id}`, {
+      headers: {
+        Authorization: `Bearer ${apiKey}`
+      },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   const formSubmit = e => {
     queryAPI();
