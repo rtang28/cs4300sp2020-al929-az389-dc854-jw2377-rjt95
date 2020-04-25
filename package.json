@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "heroku-postbuild": "echo hello && cd site && npm install && npm run build && npm run copy"
+    "heroku-postbuild": "cd site && npm install && npm run build && npm run copy"
   }
 }
