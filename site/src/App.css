@@ -1,112 +1,32 @@
+nav {
+  background-color: lightblue;
+  height: 8vh;
+}
+
+nav ul {
+  box-shadow: 0 0 10px black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+nav li {
+  display: inline;
+  /* flex: 1; */
+  margin: 0 20px;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+}
+
+nav ul>li.prot1 {
+  margin-left: auto;
+}
+
 .title {
   margin-top: 15vh;
   text-align: center;
-}
-
-.search-area {
-  margin: 0% 20%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.form-row-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.keyword-search {
-  flex: 2;
-}
-
-.location-select {
-  border-radius: 4px;
-  flex: 1;
-  font-size: 18px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  height: 100%;
-}
-
-.form-row-2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly
-}
-
-.input-restaurant {
-  flex: 1;
-  min-width: 50px;
-}
-
-.search-area>button {
-  margin: auto;
-}
-
-.tag-input {
-  background: white;
-  border: 1px solid darkgray;
-  border-radius: 4px;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 8px 8px;
-}
-
-.tag-input * {
-  font-size: 18px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.tag-list {
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.tag-list li {
-  align-items: center;
-  background: #85A3BF;
-  border-radius: 4px;
-  color: white;
-  display: flex;
-  font-weight: 300;
-  list-style: none;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  padding: 5px 10px;
-}
-
-.tag-list li button {
-  align-items: center;
-  appearance: none;
-  border: none;
-  border-radius: 50%;
-  display: inline-flex;
-  font-size: small;
-  height: 18px;
-  justify-content: center;
-  margin-left: 8px;
-  width: 18px;
-}
-
-svg {
-  height: 100%;
-  width: 100%;
-}
-
-.tag-input input {
-  border: none;
-  width: 100%;
-}
-
-.tag-input::placeholder {
-  color: gray;
-}
-
-.tag-list li.tag-input-field {
-  background: none;
-  flex-grow: 1;
-  padding: 0;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import ResultCard from './ResultCard';
+import PropTypes from 'prop-types';
 import './Results.css'
 
 const Results = ({ results }) => {
@@ -16,5 +17,12 @@ const Results = ({ results }) => {
     </div>
   );
 }
+
+Results.propTypes = {
+  results: PropTypes.arrayOf(PropTypes.exact({
+    name: PropTypes.string,
+    distance: PropTypes.number
+  })).isRequired
+};
 
 export default Results;

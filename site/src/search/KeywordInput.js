@@ -1,6 +1,7 @@
 import React, { createRef } from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as CloseIcon } from '../close-icon.svg';
+import './KeywordInput.css';
 
 /**
  * Implements a text input box that displays entered phrases on the left side of the box.
@@ -60,7 +61,7 @@ const KeywordInput = ({ keywords, handleChange, placeholderText }) => {
 KeywordInput.propTypes = {
   keywords: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleChange: PropTypes.func.isRequired,
-  placeholderText: PropTypes.string
+  placeholderText: PropTypes.string.isRequired
 }
 
 export default KeywordInput;

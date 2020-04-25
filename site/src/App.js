@@ -6,30 +6,39 @@ import './App.css';
 export default class App extends Component {
   render() {
     return (
-      // <Router>
-      //   <nav>
-      //     <ul>
-      //       <li>
-      //         <Link to="/">Home</Link>
-      //       </li>
-      //       <li>
-      //         <Link to="/about">About</Link>
-      //       </li>
-      //     </ul>
-      //   </nav>
+      <header>
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li className='prot1'>
+                <a href='https://restaurant-match.herokuapp.com'>Prototype 1</a>
+              </li>
+              <li>
+                <a href='https://restaurant-match.herokuapp.com'>Prototype 2</a>
+              </li>
+            </ul>
+          </nav>
 
-      //   {/* A <Switch> looks through its children <Route>s and
-      //       renders the first one that matches the current URL. */}
-      //   <Switch>
-      //     <Route path="/about">
-      //       <About />
-      //     </Route>
-      //     <Route path="/">
-      //       <Home />
-      //     </Route>
-      //   </Switch>
-      // </Router>
-      <Home />
+          {/* A <Switch> looks through its children <Route>s and
+              renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
+      </header>
+
+      // <Home />
     );
   }
 }
