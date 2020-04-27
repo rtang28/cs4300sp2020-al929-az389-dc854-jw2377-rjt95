@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import ReactTags from 'react-tag-autocomplete';
 import KeywordInput from './KeywordInput';
 import LocationSelector from './LocationSelector';
@@ -18,6 +18,7 @@ const Search = () => {
       id: 'WavvLdfdP6g8aZTtbBQHTw'
     }
   ]);
+  const [restaurants, updateRestaurants] = useState({});
 
   const addLike = rest => {
     if (!likes.some(l => l.id === rest.id))
@@ -43,31 +44,42 @@ const Search = () => {
     updateDislikes(temp);
   }
 
-  const locations = {
-    0: 'Montreal',
-    1: 'Las Vegas',
-    2: 'Phoenix',
-    3: 'Pittsburgh',
-    4: 'Toronto',
-    5: 'Cleveland',
-    6: 'Calgary',
-    7: 'Charlotte',
-    8: 'Madison',
-    9: 'Danville'
-  };
-  // TODO replace with actual data
-  const restaurants = [
-    { 'id': 235, 'name': 'The Odyssey Diner' },
-    { 'id': 55, 'name': 'Louie\'s Lunch' }
-  ];
+  const locationNames = { 0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
+                      5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville' };
+
+  useEffect(() => {
+    const load = async () => {
+      let f = await fetch('../location_restaurants.json');
+      let temp = await f.json();
+      for (let [city, rests] of Object.entries(temp)) {
+        const new_rests = rests.map((r, i) => ({ 'name': r, 'id': i}));
+        temp[city] = new_rests;
+      }
+      updateRestaurants(temp);
+    };
+    try {
+      load();
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   const buildQueryURLFromState = (currKeywords, currLocation) => {
     let baseURL = `${window.location}search`;
     let keywordsString = currKeywords.toString().replace(/ /g, '%20');
-    let locString = `${locations[currLocation]}`;
+    let locString = `${locationNames[currLocation]}`;
+    let likesString = likes.toString().replace(/ /g, '%20');
+    let dislikesString = dislikes.toString().replace(/ /g, '%20');
+
+    console.log(likesString);
+    console.log(dislikesString);
     baseURL += `${(currKeywords ? '?keywords=' + keywordsString : '')}`;
     if (currLocation >= 0)
       baseURL += `${(currKeywords ? '&' : '?')}location=${locString}`;
+    if (likes.length)
+      baseURL += `&likes=${likesString}`;
+    if (dislikes.length)
+      baseURL += `&dislikes=${dislikesString}`;
 
     return baseURL;
   };
@@ -131,7 +143,7 @@ const Search = () => {
           </div>
           <div className='location-selector'>
             <LocationSelector
-              locations={Object.entries(locations)}
+              locations={Object.entries(locationNames)}
               location={location}
               setLocation={updateLocation}
             />
@@ -142,7 +154,7 @@ const Search = () => {
           <div className='input-restaurant likes'>
             <ReactTags
               tags={likes}
-              suggestions={restaurants}
+              suggestions={restaurants[locationNames[location]]}
               handleAddition={addLike}
               handleDelete={removeLike}
               placeholder={likes.length ? '' : 'Enter restaurants you like...'}
@@ -152,7 +164,7 @@ const Search = () => {
           <div className='input-restaurant dislikes'>
             <ReactTags
               tags={dislikes}
-              suggestions={restaurants}
+              suggestions={restaurants[locationNames[location]]}
               handleAddition={addDislike}
               handleDelete={removeDislike}
               placeholder={dislikes.length ? '' : 'Enter restaurants you don\'t like...'}
