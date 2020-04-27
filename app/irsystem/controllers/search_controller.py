@@ -5,21 +5,21 @@ import requests
 import os
 from flask import jsonify
 import json
-from ..models.search import SmartSearch
+from ..models.cossearch import CosineSearch
 
-search_model = SmartSearch()
+search_model = CosineSearch()
 
 @irsystem.route('/search', methods=['GET'])
 def search():
 	keywords = request.args.get('keywords', None)
-	zipcode = request.args.get('zip', None)
-	if keywords:
-		results = search_model.search(keywords, zipcode)
+	location = request.args.get('location', None)
+	likes = request.args.get('likes', "")
+	dislikes = request.args.get('dislikes', "")
+	if keywords and location:
+		results = search_model.search(keywords, location, likes, dislikes)
 	else:
 		results = []
 	return http_resource(results, "results")
-
-YELP_TOKEN = os.environ.get('YELP_API_KEY')
 
 def get_auth_dict():
     return {'Authorization' : "Bearer " + YELP_TOKEN}
