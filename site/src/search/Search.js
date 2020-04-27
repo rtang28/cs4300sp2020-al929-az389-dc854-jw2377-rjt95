@@ -1,6 +1,5 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import ReactTags from 'react-tag-autocomplete';
-import KeywordInput from './KeywordInput';
 import LocationSelector from './LocationSelector';
 import Results from './Results';
 import './Search.css';
@@ -19,7 +18,6 @@ const Search = () => {
   }
 
   const removeLike = i => {
-    console.log(i);
     const temp = [...likes];
     temp.splice(i, 1);
     updateLikes(temp);
@@ -31,14 +29,13 @@ const Search = () => {
   }
 
   const removeDislike = i => {
-    console.log(i);
     const temp = [...dislikes];
     temp.splice(i, 1);
     updateDislikes(temp);
   }
 
   const locationNames = { 0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
-                      5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville' };
+                          5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville' };
 
   useEffect(() => {
     const load = async () => {
@@ -81,7 +78,6 @@ const Search = () => {
     if (keywords.length > 0 || location >= 0) {
       const queryURL = buildQueryURLFromState(keywords, location);
       console.log(queryURL);
-      // const queryURL = `${window.location}search`;
       let response = await (fetch(queryURL, { method: 'GET' }));
       console.log(response);
       let json = await (response.json());
@@ -125,15 +121,20 @@ const Search = () => {
     <Fragment>
       <form autoComplete='off' className='search-area' onSubmit={formSubmit}>
         <div className='form-row-1'>
-          <div className='keyword-search'>
-            <KeywordInput keywords={keywords} handleChange={updateKeywords} placeholderText={'Enter some keywords...'} />
-          </div>
           <div className='location-selector'>
             <LocationSelector
               locations={Object.entries(locationNames)}
               location={location}
               setLocation={updateLocation}
             />
+          </div>
+          <div className='keyword-search'>
+            <ReactTags
+              tags={keywords}
+              allowNew
+              handleAddition={word => updateKeywords([...keywords, word])}
+              handleDelete={i => {const temp = [...keywords]; temp.splice(i, 1); updateKeywords(temp)}}
+              placeholder={'Enter some keywords...'}/>
           </div>
           <button className='submit' type='submit'>Search!</button>
         </div>
@@ -146,7 +147,6 @@ const Search = () => {
               handleDelete={removeLike}
               placeholder={likes.length ? '' : 'Enter restaurants you like...'}
             />
-            {/* <KeywordInput keywords={likes} handleChange={updateLikes} placeholderText={'Enter some restaurants you like...'} /> */}
           </div>
           <div className='input-restaurant dislikes'>
             <ReactTags
@@ -156,7 +156,6 @@ const Search = () => {
               handleDelete={removeDislike}
               placeholder={dislikes.length ? '' : 'Enter restaurants you don\'t like...'}
             />
-            {/* <KeywordInput keywords={dislikes} handleChange={updateDislikes} placeholderText={'Enter some restaurants you don\'t like...'} /> */}
           </div>
         </div>
       </form>
