@@ -15,6 +15,8 @@ DATADIR = os.path.abspath(os.path.join(app.instance_path, "..", "data"))
 def search():
 	keywords = request.args.get('keywords', None)
 	location = request.args.get('location', None)
+	if location == 'Pittsburgh':
+		location = 'Pittsburg'
 	likes = request.args.get('likes', "")
 	dislikes = request.args.get('dislikes', "")
 	if keywords and location:
