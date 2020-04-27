@@ -11,6 +11,7 @@ const Search = () => {
   const [dislikes, updateDislikes] = useState([]);
   const [results, updateResults] = useState([]);
   const [restaurants, updateRestaurants] = useState({});
+  const [terms, updateTerms] = useState({});
 
   const addLike = rest => {
     if (!likes.some(l => l.id === rest.id))
@@ -34,21 +35,43 @@ const Search = () => {
     updateDislikes(temp);
   }
 
+  const addKeyword = term => {
+    if (!keywords.some(l => l.id === term.id))
+      updateKeywords([...keywords, term]);
+  }
+
+  const removeKeyword = i => {
+    const temp = [...keywords];
+    temp.splice(i, 1);
+    updateKeywords(temp);
+  }
+
   const locationNames = { 0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
                           5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville' };
 
   useEffect(() => {
-    const load = async () => {
+    const loadRestaurants = async () => {
       let f = await fetch(`${window.location}restaurants`);
       let temp = await f.json();
       for (let [city, rests] of Object.entries(temp)) {
-        const new_rests = rests.map((r, i) => ({ 'name': r, 'id': i}));
+        const new_rests = rests.map((r, i) => ({ 'name': r, 'id': i }));
         temp[city] = new_rests;
       }
       updateRestaurants(temp);
     };
+
+    const loadTerms = async () => {
+      let f = await fetch(`${window.location}terms`);
+      let temp = await f.json();
+      for (let [city, terms] of Object.entries(temp)) {
+        const new_terms = terms.map((t, i) => ({ 'name': t, 'id': i }));
+        temp[city] = new_terms;
+      }
+      updateTerms(temp);
+    }
     try {
-      load();
+      loadRestaurants();
+      loadTerms();
     } catch (error) {
       console.error(error);
     }
@@ -56,13 +79,11 @@ const Search = () => {
 
   const buildQueryURLFromState = (currKeywords, currLocation) => {
     let baseURL = `${window.location}search`;
-    let keywordsString = currKeywords.toString().replace(/ /g, '%20');
+    let keywordsString = currKeywords.map(obj => obj['name']).toString().replace(/ /g, '%20');
     let locString = `${locationNames[currLocation]}`;
     let likesString = likes.map(obj => obj['name']).toString().replace(/ /g, '%20');
     let dislikesString = dislikes.map(obj => obj['name']).toString().replace(/ /g, '%20');
 
-    console.log(likesString);
-    console.log(dislikesString);
     baseURL += `${(currKeywords ? '?keywords=' + keywordsString : '')}`;
     if (currLocation >= 0)
       baseURL += `${(currKeywords ? '&' : '?')}location=${locString}`;
@@ -83,7 +104,6 @@ const Search = () => {
       let json = await (response.json());
       console.log(json);
       let resultRestaurants = json.data.results;
-      // updateResults(results);
       queryYelpAPI(resultRestaurants);
     }
   };
@@ -102,7 +122,6 @@ const Search = () => {
         restaurants[i].yelp_rating = yelp_data.rating;
         restaurants[i].location = yelp_data.location.city;
         restaurants[i].image_url = yelp_data.image_url;
-        restaurants[i].keywords = yelp_data.matched_categories ? yelp_data.matched_categories : [];
       }
       console.log(restaurants);
       updateResults(restaurants);
@@ -113,6 +132,7 @@ const Search = () => {
   }
 
   const formSubmit = e => {
+    updateResults([]);
     queryAPI();
     e.preventDefault(e);
   }
@@ -131,9 +151,9 @@ const Search = () => {
           <div className='keyword-search'>
             <ReactTags
               tags={keywords}
-              allowNew
-              handleAddition={word => updateKeywords([...keywords, word])}
-              handleDelete={i => {const temp = [...keywords]; temp.splice(i, 1); updateKeywords(temp)}}
+              suggestions={location >= 0 ? terms[locationNames[location]] : []}
+              handleAddition={addKeyword}
+              handleDelete={removeKeyword}
               placeholder={'Enter some keywords...'}/>
           </div>
           <button className='submit' type='submit'>Search!</button>

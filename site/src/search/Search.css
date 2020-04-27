@@ -120,6 +120,7 @@
   top: 100%;
   left: 0;
   width: 100%;
+  z-index: 99;
 }
 
 .react-tags__suggestions ul {
