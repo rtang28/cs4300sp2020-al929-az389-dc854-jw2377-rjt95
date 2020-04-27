@@ -58,11 +58,20 @@ const Search = () => {
   const queryYelpAPI = async (restaurants) => {
     try {
       for (var i = 0; i < restaurants.length; i++) {
-        var yelp_data = await axios.get(`${'https://cors-anywhere.herokuapp.com/'}https://api.yelp.com/v3/businesses/${restaurants[i].id}`, {
+        // var id = restaurants[i].id;
+        var id = 'WavvLdfdP6g8aZTtbBQHTw';
+        // var cors_url = 'https://cors-anywhere.herokuapp.com/';
+        var cors_url = '';
+        var query_url = cors_url + `https://api.yelp.com/v3/businesses/${id}`;
+        var yelp_data = await (fetch(query_url, {
+          method: 'GET',
           headers: {
-            Authorization: `Bearer ${apiKey}`
-          },
-        })
+            "Authorization": "Bearer " + apiKey,
+            "Content-Type": "application/json",
+            "cache-control": "no-cache",
+            "Postman-Token": "e519606f-c291-4578-b743-683704377b7f"
+          }
+        }));
         restaurants[i].url = yelp_data.url;
         restaurants[i].yelp_rating = yelp_data.rating;
         restaurants[i].location = yelp_data.location.city;
