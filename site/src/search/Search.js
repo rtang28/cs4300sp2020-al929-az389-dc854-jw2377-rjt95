@@ -37,15 +37,17 @@ const Search = () => {
     updateDislikes(temp);
   }
 
-  const locationNames = { 0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
-                      5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville' };
+  const locationNames = {
+    0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
+    5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville'
+  };
 
   useEffect(() => {
     const load = async () => {
       let f = await fetch(`${window.location}restaurants`);
       let temp = await f.json();
       for (let [city, rests] of Object.entries(temp)) {
-        const new_rests = rests.map((r, i) => ({ 'name': r, 'id': i}));
+        const new_rests = rests.map((r, i) => ({ 'name': r, 'id': i }));
         temp[city] = new_rests;
       }
       updateRestaurants(temp);
@@ -106,7 +108,6 @@ const Search = () => {
         restaurants[i].yelp_rating = yelp_data.rating;
         restaurants[i].location = yelp_data.location.city;
         restaurants[i].image_url = yelp_data.image_url;
-        restaurants[i].keywords = yelp_data.matched_categories ? yelp_data.matched_categories : [];
       }
       console.log(restaurants);
       updateResults(restaurants);

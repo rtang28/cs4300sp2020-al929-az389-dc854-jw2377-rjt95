@@ -26,7 +26,7 @@ const ResultCard = ({ name, distance, rating, url, image_url, location, keywords
               <h6 className="card-rating-text">{location}</h6>
             </div>
             <div className="card-keywords">
-              <h6 className="card-keywords-text">{keywords}</h6>
+              <h6 className="card-keywords-text">{keywords.join(", ")}</h6>
             </div>
           </div>
         </div>
