@@ -18,7 +18,7 @@ const ResultCard = ({ name, distance, rating, url, image_url, location }) => {
               </a>
             </div>
             <div className="card-rating">
-              <h5 className="card-rating-text">{rating}</h5>
+              <h5 className="card-rating-text">rating: {rating}</h5>
             </div>
           </div>
           <div className="row2">
