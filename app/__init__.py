@@ -20,8 +20,8 @@ db = SQLAlchemy(app)
 # Import + Register Blueprints
 from app.base import base as base
 app.register_blueprint(base)
-from app.accounts import accounts as accounts
-app.register_blueprint(accounts)
+# from app.accounts import accounts as accounts
+# app.register_blueprint(accounts)
 from app.irsystem import irsystem as irsystem
 app.register_blueprint(irsystem)
 
