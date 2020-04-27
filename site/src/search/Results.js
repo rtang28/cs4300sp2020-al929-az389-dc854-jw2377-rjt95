@@ -16,7 +16,7 @@ const Results = ({ results }) => {
             url={result.url}
             image_url={result.image_url}
             location={result.location}
-            keywords={result.keywords}
+            keywords={result.matched_categories}
           />
         ))}
     </div>

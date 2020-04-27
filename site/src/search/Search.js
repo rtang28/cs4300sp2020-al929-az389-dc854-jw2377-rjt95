@@ -10,14 +10,7 @@ const Search = () => {
   const [location, updateLocation] = useState(-1);
   const [likes, updateLikes] = useState([]);
   const [dislikes, updateDislikes] = useState([]);
-  const [results, updateResults] = useState([
-    {
-      name: 'Gary Danko',
-      distance: 1,
-      categories: [],
-      id: 'WavvLdfdP6g8aZTtbBQHTw'
-    }
-  ]);
+  const [results, updateResults] = useState([]);
   const [restaurants, updateRestaurants] = useState({});
 
   const addLike = rest => {
@@ -44,15 +37,17 @@ const Search = () => {
     updateDislikes(temp);
   }
 
-  const locationNames = { 0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
-                      5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville' };
+  const locationNames = {
+    0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
+    5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville'
+  };
 
   useEffect(() => {
     const load = async () => {
       let f = await fetch(`${window.location}restaurants`);
       let temp = await f.json();
       for (let [city, rests] of Object.entries(temp)) {
-        const new_rests = rests.map((r, i) => ({ 'name': r, 'id': i}));
+        const new_rests = rests.map((r, i) => ({ 'name': r, 'id': i }));
         temp[city] = new_rests;
       }
       updateRestaurants(temp);
@@ -68,8 +63,8 @@ const Search = () => {
     let baseURL = `${window.location}search`;
     let keywordsString = currKeywords.toString().replace(/ /g, '%20');
     let locString = `${locationNames[currLocation]}`;
-    let likesString = likes.toString().replace(/ /g, '%20');
-    let dislikesString = dislikes.toString().replace(/ /g, '%20');
+    let likesString = likes.map(obj => obj['name']).toString().replace(/ /g, '%20');
+    let dislikesString = dislikes.map(obj => obj['name']).toString().replace(/ /g, '%20');
 
     console.log(likesString);
     console.log(dislikesString);
@@ -93,9 +88,9 @@ const Search = () => {
       console.log(response);
       let json = await (response.json());
       console.log(json);
-      var restaurants = json.data.results;
+      let resultRestaurants = json.data.results;
       // updateResults(results);
-      queryYelpAPI(restaurants);
+      queryYelpAPI(resultRestaurants);
     }
   };
 
@@ -113,7 +108,6 @@ const Search = () => {
         restaurants[i].yelp_rating = yelp_data.rating;
         restaurants[i].location = yelp_data.location.city;
         restaurants[i].image_url = yelp_data.image_url;
-        restaurants[i].keywords = yelp_data.matched_categories ? yelp_data.matched_categories : [];
       }
       console.log(restaurants);
       updateResults(restaurants);
@@ -148,7 +142,7 @@ const Search = () => {
           <div className='input-restaurant likes'>
             <ReactTags
               tags={likes}
-              suggestions={restaurants[locationNames[location]]}
+              suggestions={location >= 0 ? restaurants[locationNames[location]] : []}
               handleAddition={addLike}
               handleDelete={removeLike}
               placeholder={likes.length ? '' : 'Enter restaurants you like...'}
@@ -158,7 +152,7 @@ const Search = () => {
           <div className='input-restaurant dislikes'>
             <ReactTags
               tags={dislikes}
-              suggestions={restaurants[locationNames[location]]}
+              suggestions={location >= 0 ? restaurants[locationNames[location]] : []}
               handleAddition={addDislike}
               handleDelete={removeDislike}
               placeholder={dislikes.length ? '' : 'Enter restaurants you don\'t like...'}
