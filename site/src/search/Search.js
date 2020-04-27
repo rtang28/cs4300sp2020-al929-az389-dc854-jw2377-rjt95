@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react';
 import ReactTags from 'react-tag-autocomplete';
-import axios from 'axios';
 import KeywordInput from './KeywordInput';
 import LocationSelector from './LocationSelector';
 import Results from './Results';
@@ -65,7 +64,7 @@ const Search = () => {
   const buildQueryURLFromState = (currKeywords, currLocation) => {
     let baseURL = `${window.location}search`;
     let keywordsString = currKeywords.toString().replace(/ /g, '%20');
-    let locString = `${currLocation}`;
+    let locString = `${locations[currLocation]}`;
     baseURL += `${(currKeywords ? '?keywords=' + keywordsString : '')}`;
     if (currLocation >= 0)
       baseURL += `${(currKeywords ? '&' : '?')}location=${locString}`;

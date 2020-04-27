@@ -9,7 +9,6 @@ const Results = ({ results }) => {
       {results && results.map(
         (result) => (
           <ResultCard
-            key={result.name}
             name={result.name}
             key={result.name}
             distance={result.distance}
