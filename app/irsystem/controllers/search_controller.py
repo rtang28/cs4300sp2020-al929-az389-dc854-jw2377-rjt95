@@ -1,7 +1,10 @@
 from . import *
 from app.irsystem.models.helpers import *
 from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
-
+import requests
+import os
+from flask import jsonify
+import json
 from ..models.cossearch import CosineSearch
 
 search_model = CosineSearch()
@@ -14,8 +17,20 @@ def search():
 	dislikes = request.args.get('dislikes', "")
 	if keywords and location:
 		results = search_model.search(keywords, location, likes, dislikes)
-	# elif keywords and location:
-	# 	results = search_model.search(keywords, location)
 	else:
 		results = []
 	return http_resource(results, "results")
+
+YELP_TOKEN = os.environ.get('YELP_API_KEY')
+
+def get_auth_dict():
+    return {'Authorization' : "Bearer " + YELP_TOKEN}
+
+@irsystem.route('/yelp', methods=['GET'])
+def yelp():
+	id = request.args.get('id')
+	response = requests.get(f"https://api.yelp.com/v3/businesses/{id}", headers=get_auth_dict())
+	if response.status_code != 200:
+		return json.dumps('')
+	return json.dumps(response.json())
+	

@@ -215,7 +215,7 @@ class CosineSearch:
         
         for x in range(15):
             restaurant_dict = {}
-    #         restaurant_dict['id'] = final[x]
+            restaurant_dict['id'] = final[x]
             restaurant_dict['name'] = self.id_to_name[final[x]]
             restaurant_dict['score'] = restaurant_to_sim[final[x]]
             if matched_categories != []:

@@ -99,32 +99,26 @@ const Search = () => {
     }
   };
 
-  const apiKey = process.env.REACT_APP_YELP_API_KEY;
-
   const queryYelpAPI = async (restaurants) => {
     try {
-      for (var i = 0; i < restaurants.length; i++) {
-        // var id = restaurants[i].id;
-        var id = 'WavvLdfdP6g8aZTtbBQHTw';
-        // var cors_url = 'https://cors-anywhere.herokuapp.com/';
-        var cors_url = '';
-        var query_url = cors_url + `https://api.yelp.com/v3/businesses/${id}`;
-        var yelp_data = await (fetch(query_url, {
-          method: 'GET',
-          headers: {
-            "Authorization": "Bearer " + apiKey,
-            "Content-Type": "application/json",
-            "cache-control": "no-cache",
-            "Postman-Token": "e519606f-c291-4578-b743-683704377b7f"
-          }
-        }));
+      for (let i = 0; i < restaurants.length; i++) {
+        let id = restaurants[i].id;
+        let query_url = `${window.location}yelp?id=${id}`;
+        let response = await (fetch(query_url, { method: 'GET' }));
+        console.log(response);
+        let json = await (response.json());
+        let yelp_data = json;
+        console.log(yelp_data);
         restaurants[i].url = yelp_data.url;
         restaurants[i].yelp_rating = yelp_data.rating;
         restaurants[i].location = yelp_data.location.city;
         restaurants[i].image_url = yelp_data.image_url;
+        restaurants[i].keywords = yelp_data.matched_categories ? yelp_data.matched_categories : [];
       }
+      console.log(restaurants);
       updateResults(restaurants);
     } catch (error) {
+      console.log(restaurants);
       console.log(error);
     }
   }
@@ -158,7 +152,7 @@ const Search = () => {
               handleAddition={addLike}
               handleDelete={removeLike}
               placeholder={likes.length ? '' : 'Enter restaurants you like...'}
-               />
+            />
             {/* <KeywordInput keywords={likes} handleChange={updateLikes} placeholderText={'Enter some restaurants you like...'} /> */}
           </div>
           <div className='input-restaurant dislikes'>
@@ -168,7 +162,7 @@ const Search = () => {
               handleAddition={addDislike}
               handleDelete={removeDislike}
               placeholder={dislikes.length ? '' : 'Enter restaurants you don\'t like...'}
-               />
+            />
             {/* <KeywordInput keywords={dislikes} handleChange={updateDislikes} placeholderText={'Enter some restaurants you don\'t like...'} /> */}
           </div>
         </div>

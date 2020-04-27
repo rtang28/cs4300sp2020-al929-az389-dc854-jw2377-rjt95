@@ -12,10 +12,11 @@ const Results = ({ results }) => {
             name={result.name}
             key={result.name}
             distance={result.distance}
-            rating={result.rating}
+            rating={result.yelp_rating}
             url={result.url}
             image_url={result.image_url}
             location={result.location}
+            keywords={result.keywords}
           />
         ))}
     </div>
