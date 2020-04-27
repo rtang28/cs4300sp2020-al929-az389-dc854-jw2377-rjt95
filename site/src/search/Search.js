@@ -118,6 +118,7 @@ const Search = () => {
   }
 
   const formSubmit = e => {
+    updateResults([]);
     queryAPI();
     e.preventDefault(e);
   }
