@@ -1,4 +1,5 @@
 from . import *
+from app import app
 from app.irsystem.models.helpers import *
 from app.irsystem.models.helpers import NumpyEncoder as NumpyEncoder
 import requests
@@ -8,6 +9,7 @@ import json
 from ..models.cossearch import CosineSearch
 
 search_model = CosineSearch()
+DATADIR = os.path.abspath(os.path.join(app.instance_path, "..", "data"))
 
 @irsystem.route('/search', methods=['GET'])
 def search():
@@ -34,3 +36,9 @@ def yelp():
 		return json.dumps('')
 	return json.dumps(response.json())
 	
+
+@irsystem.route('/restaurants', methods=['GET'])
+def restaurants():
+	with open(os.path.join(DATADIR, 'location_restaurants.json'),'r') as f:
+		restaurant_dir = eval(f.read())
+	return json.dumps(restaurant_dir)

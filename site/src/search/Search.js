@@ -49,7 +49,7 @@ const Search = () => {
 
   useEffect(() => {
     const load = async () => {
-      let f = await fetch('../location_restaurants.json');
+      let f = await fetch(`${window.location}restaurants`);
       let temp = await f.json();
       for (let [city, rests] of Object.entries(temp)) {
         const new_rests = rests.map((r, i) => ({ 'name': r, 'id': i}));
