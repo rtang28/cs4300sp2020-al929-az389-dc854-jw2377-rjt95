@@ -93,15 +93,20 @@ const Search = () => {
         let id = restaurants[i].id;
         let query_url = `${window.location}yelp?id=${id}`;
         let response = await (fetch(query_url, { method: 'GET' }));
+        console.log(response);
         let json = await (response.json());
         let yelp_data = json;
+        console.log(yelp_data);
         restaurants[i].url = yelp_data.url;
         restaurants[i].yelp_rating = yelp_data.rating;
         restaurants[i].location = yelp_data.location.city;
         restaurants[i].image_url = yelp_data.image_url;
+        restaurants[i].keywords = yelp_data.matched_categories ? yelp_data.matched_categories : [];
       }
+      console.log(restaurants);
       updateResults(restaurants);
     } catch (error) {
+      console.log(restaurants);
       console.log(error);
     }
   }
@@ -135,7 +140,7 @@ const Search = () => {
               handleAddition={addLike}
               handleDelete={removeLike}
               placeholder={likes.length ? '' : 'Enter restaurants you like...'}
-               />
+            />
             {/* <KeywordInput keywords={likes} handleChange={updateLikes} placeholderText={'Enter some restaurants you like...'} /> */}
           </div>
           <div className='input-restaurant dislikes'>
@@ -145,7 +150,7 @@ const Search = () => {
               handleAddition={addDislike}
               handleDelete={removeDislike}
               placeholder={dislikes.length ? '' : 'Enter restaurants you don\'t like...'}
-               />
+            />
             {/* <KeywordInput keywords={dislikes} handleChange={updateDislikes} placeholderText={'Enter some restaurants you don\'t like...'} /> */}
           </div>
         </div>

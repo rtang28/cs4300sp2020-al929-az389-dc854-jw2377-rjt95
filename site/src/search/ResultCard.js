@@ -1,7 +1,7 @@
 import React from "react";
 import "./ResultCard.css";
 
-const ResultCard = ({ name, distance, rating, url, image_url, location }) => {
+const ResultCard = ({ name, distance, rating, url, image_url, location, keywords }) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -18,7 +18,7 @@ const ResultCard = ({ name, distance, rating, url, image_url, location }) => {
               </a>
             </div>
             <div className="card-rating">
-              <h5 className="card-rating-text">rating: {rating}</h5>
+              <h5 className="card-rating-text">Yelp Rating: {rating}</h5>
             </div>
           </div>
           <div className="row2">
@@ -26,7 +26,7 @@ const ResultCard = ({ name, distance, rating, url, image_url, location }) => {
               <h6 className="card-rating-text">{location}</h6>
             </div>
             <div className="card-keywords">
-              <h6 className="card-keywords-text">keywords placeholder</h6>
+              <h6 className="card-keywords-text">{keywords}</h6>
             </div>
           </div>
         </div>
