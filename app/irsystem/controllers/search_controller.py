@@ -44,3 +44,10 @@ def restaurants():
 	with open(os.path.join(DATADIR, 'location_restaurants.json'),'r') as f:
 		restaurant_dir = eval(f.read())
 	return json.dumps(restaurant_dir)
+
+@irsystem.route('/terms', methods=['GET'])
+def terms():
+	with open(os.path.join(DATADIR, 'state_word_to_index.txt'),'r') as f:
+		term_dir = eval(f.read())
+	term_dir =  {k: v.keys() for k, v in term_dir.items()}
+	return json.dumps(term_dir)
