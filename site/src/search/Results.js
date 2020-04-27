@@ -10,6 +10,7 @@ const Results = ({ results }) => {
         (result) => (
           <ResultCard
             name={result.name}
+            key={result.name}
             distance={result.distance}
             rating={result.rating}
             url={result.url}
@@ -22,7 +23,7 @@ const Results = ({ results }) => {
 }
 
 Results.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.exact({
+  results: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     distance: PropTypes.number
   })).isRequired
