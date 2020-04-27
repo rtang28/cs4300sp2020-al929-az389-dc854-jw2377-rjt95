@@ -16,13 +16,17 @@ const KeywordInput = ({ keywords, handleChange, placeholderText }) => {
     }
     const keyword = e.target.value.toLowerCase();
     if (e.key === 'Enter' && keyword) {
-      if (!keywords.includes(keyword)) {
-        handleChange([...keywords, keyword]);
-        inputField.current.value = '';
-      }
+      addWord(keyword);
     }
     else if (e.key === 'Backspace' && !keyword) {
       removeWord(keywords.length - 1);
+    }
+  }
+
+  const addWord = word => {
+    if (!keywords.includes(word)) {
+      handleChange([...keywords, word]);
+      inputField.current.value = '';
     }
   }
 
