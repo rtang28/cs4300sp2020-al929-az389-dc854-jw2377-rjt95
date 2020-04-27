@@ -10,14 +10,7 @@ const Search = () => {
   const [location, updateLocation] = useState(-1);
   const [likes, updateLikes] = useState([]);
   const [dislikes, updateDislikes] = useState([]);
-  const [results, updateResults] = useState([
-    {
-      name: 'Gary Danko',
-      distance: 1,
-      categories: [],
-      id: 'WavvLdfdP6g8aZTtbBQHTw'
-    }
-  ]);
+  const [results, updateResults] = useState([]);
   const [restaurants, updateRestaurants] = useState({});
 
   const addLike = rest => {
@@ -68,8 +61,8 @@ const Search = () => {
     let baseURL = `${window.location}search`;
     let keywordsString = currKeywords.toString().replace(/ /g, '%20');
     let locString = `${locationNames[currLocation]}`;
-    let likesString = likes.toString().replace(/ /g, '%20');
-    let dislikesString = dislikes.toString().replace(/ /g, '%20');
+    let likesString = likes.map(obj => obj['name']).toString().replace(/ /g, '%20');
+    let dislikesString = dislikes.map(obj => obj['name']).toString().replace(/ /g, '%20');
 
     console.log(likesString);
     console.log(dislikesString);
@@ -93,9 +86,9 @@ const Search = () => {
       console.log(response);
       let json = await (response.json());
       console.log(json);
-      var restaurants = json.data.results;
+      let resultRestaurants = json.data.results;
       // updateResults(results);
-      queryYelpAPI(restaurants);
+      queryYelpAPI(resultRestaurants);
     }
   };
 
@@ -148,7 +141,7 @@ const Search = () => {
           <div className='input-restaurant likes'>
             <ReactTags
               tags={likes}
-              suggestions={restaurants[locationNames[location]]}
+              suggestions={location >= 0 ? restaurants[locationNames[location]] : []}
               handleAddition={addLike}
               handleDelete={removeLike}
               placeholder={likes.length ? '' : 'Enter restaurants you like...'}
@@ -158,7 +151,7 @@ const Search = () => {
           <div className='input-restaurant dislikes'>
             <ReactTags
               tags={dislikes}
-              suggestions={restaurants[locationNames[location]]}
+              suggestions={location >= 0 ? restaurants[locationNames[location]] : []}
               handleAddition={addDislike}
               handleDelete={removeDislike}
               placeholder={dislikes.length ? '' : 'Enter restaurants you don\'t like...'}
