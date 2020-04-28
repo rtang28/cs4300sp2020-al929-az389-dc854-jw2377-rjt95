@@ -6,45 +6,43 @@ import './Results.css';
 
 const Results = ({ results, status }) => {
   const renderResults = () => {
-    let result;
+    let elementsToRender;
     switch (status) {
       case 'loading':
-        result = <ReactLoading type='bars' color='lightblue'/>
+        elementsToRender = <ReactLoading type='bars' color='lightblue'/>
         break;
 
       case 'complete':
         if (!results || !results.length)
-          result = (<p>No results found.</p>);
+          elementsToRender = (<p>No results found.</p>);
         else {
-          result = results.map(
-            (result) => (
-              <ResultCard
-                name={result.name}
-                key={result.name}
-                distance={result.distance}
-                rating={result.yelp_rating}
-                url={result.url}
-                image_url={result.image_url}
-                location={result.location}
-                keywords={result.matched_categories}
-              />
-            ));
+          elementsToRender = (
+            <div className='results-container'>
+              {results.map(result => (
+                <ResultCard
+                  name={result.name}
+                  key={result.name}
+                  distance={result.distance}
+                  rating={result.yelp_rating}
+                  url={result.url}
+                  image_url={result.image_url}
+                  location={result.location}
+                  keywords={result.matched_categories}
+                />
+              ))}
+            </div>);
         }
         break;
 
       // catches 'error' case and anything else
       default:
-        result = (<p>Sorry, something went wrong. Try a different query!</p>);
+        elementsToRender = (<p>Sorry, something went wrong. Try a different query!</p>);
         break;
     }
-    return result;
+    return elementsToRender;
   };
 
-  return (
-    <div className="results-container">
-      {renderResults()}
-    </div>
-  );
+  return renderResults();
 }
 
 Results.propTypes = {

@@ -9,10 +9,17 @@ const Search = () => {
   const [location, updateLocation] = useState(-1);
   const [likes, updateLikes] = useState([]);
   const [dislikes, updateDislikes] = useState([]);
-  const [results, updateResults] = useState([]);
+  const [results, updateResults] = useState([
+    {
+      name: 'Gary Danko',
+      distance: 1,
+      categories: [],
+      id: 'WavvLdfdP6g8aZTtbBQHTw'
+    }
+  ]);
   const [restaurants, updateRestaurants] = useState({});
   const [terms, updateTerms] = useState({});
-  const [queryStatus, updateQueryStatus] = useState('empty');
+  const [queryStatus, updateQueryStatus] = useState('complete');
 
   const addLike = rest => {
     if (!likes.some(l => l.id === rest.id))
