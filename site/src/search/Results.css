@@ -9,3 +9,7 @@
 .results-area p, .results-area > div {
   margin: 0 auto;
 }
+
+.results-container {
+  margin: inherit !important;
+}

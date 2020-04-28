@@ -126,7 +126,9 @@ const Search = () => {
       console.log(yelp_data);
       restaurants[i].url = yelp_data.url;
       restaurants[i].yelp_rating = yelp_data.rating;
-      restaurants[i].location = yelp_data.location.city;
+      if (yelp_data.location) {
+        restaurants[i].location = yelp_data.location.city;
+      }
       restaurants[i].image_url = yelp_data.image_url;
     }
     console.log(restaurants);
