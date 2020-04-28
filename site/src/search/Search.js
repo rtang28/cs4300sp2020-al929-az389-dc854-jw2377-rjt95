@@ -12,6 +12,7 @@ const Search = () => {
   const [results, updateResults] = useState([]);
   const [restaurants, updateRestaurants] = useState({});
   const [terms, updateTerms] = useState({});
+  const [queryStatus, updateQueryStatus] = useState('empty');
 
   const addLike = rest => {
     if (!likes.some(l => l.id === rest.id))
@@ -97,41 +98,43 @@ const Search = () => {
 
   const queryAPI = async () => {
     if (keywords.length > 0 || location >= 0) {
-      const queryURL = buildQueryURLFromState(keywords, location);
-      console.log(queryURL);
-      let response = await (fetch(queryURL, { method: 'GET' }));
-      console.log(response);
-      let json = await (response.json());
-      console.log(json);
-      let resultRestaurants = json.data.results;
-      queryYelpAPI(resultRestaurants);
+      try {
+        const queryURL = buildQueryURLFromState(keywords, location);
+        console.log(queryURL);
+        let response = await (fetch(queryURL, { method: 'GET' }));
+        console.log(response);
+        let json = await (response.json());
+        console.log(json);
+        let resultRestaurants = json.data.results;
+        await queryYelpAPI(resultRestaurants);
+        updateQueryStatus('complete');
+      } catch (error) {
+        console.error(error);
+        updateQueryStatus('error');
+      }
     }
   };
 
   const queryYelpAPI = async (restaurants) => {
-    try {
-      for (let i = 0; i < restaurants.length; i++) {
-        let id = restaurants[i].id;
-        let query_url = `${window.location}yelp?id=${id}`;
-        let response = await (fetch(query_url, { method: 'GET' }));
-        console.log(response);
-        let json = await (response.json());
-        let yelp_data = json;
-        console.log(yelp_data);
-        restaurants[i].url = yelp_data.url;
-        restaurants[i].yelp_rating = yelp_data.rating;
-        restaurants[i].location = yelp_data.location.city;
-        restaurants[i].image_url = yelp_data.image_url;
-      }
-      console.log(restaurants);
-      updateResults(restaurants);
-    } catch (error) {
-      console.log(restaurants);
-      console.log(error);
+    for (let i = 0; i < restaurants.length; i++) {
+      let id = restaurants[i].id;
+      let query_url = `${window.location}yelp?id=${id}`;
+      let response = await (fetch(query_url, { method: 'GET' }));
+      console.log(response);
+      let json = await (response.json());
+      let yelp_data = json;
+      console.log(yelp_data);
+      restaurants[i].url = yelp_data.url;
+      restaurants[i].yelp_rating = yelp_data.rating;
+      restaurants[i].location = yelp_data.location.city;
+      restaurants[i].image_url = yelp_data.image_url;
     }
+    console.log(restaurants);
+    updateResults(restaurants);
   }
 
   const formSubmit = e => {
+    updateQueryStatus('loading');
     updateResults([]);
     queryAPI();
     e.preventDefault(e);
@@ -180,9 +183,7 @@ const Search = () => {
         </div>
       </form>
       <div className='results-area'>
-        <Results
-          results={results}
-        />
+        {queryStatus !== 'empty' && <Results results={results} status={queryStatus} />}
       </div>
     </Fragment>
   );

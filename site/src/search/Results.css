@@ -5,3 +5,7 @@
     justify-content: flex-start;
     margin-top: 20px;
 }
+
+.results-area p, .results-area > div {
+  margin: 0 auto;
+}

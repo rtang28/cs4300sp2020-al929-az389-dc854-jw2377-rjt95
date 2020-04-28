@@ -28,6 +28,9 @@
   appearance: none;
   border: none;
   min-width: 70px;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: lightblue;
 }
 
 .form-row-2 {
