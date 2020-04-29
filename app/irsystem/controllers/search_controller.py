@@ -47,7 +47,10 @@ def restaurants():
 
 @irsystem.route('/terms', methods=['GET'])
 def terms():
-	with open(os.path.join(DATADIR, 'state_word_to_index.txt'),'r') as f:
-		term_dir = eval(f.read())
-	term_dir = {k: list(v.keys()) for k, v in term_dir.items()}
-	return json.dumps(term_dir)
+    with open(os.path.join(DATADIR, 'state_word_to_index.txt'),'r') as f:
+        term_dir = eval(f.read())
+
+    term_dir = {k: list(v.keys()) for k, v in term_dir.items()}
+    term_dir['Pittsburgh'] = term_dir['Pittsburg']
+    del term_dir['Pittsburg']
+    return json.dumps(term_dir)
