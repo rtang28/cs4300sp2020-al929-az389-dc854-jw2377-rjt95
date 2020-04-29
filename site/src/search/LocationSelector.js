@@ -6,10 +6,11 @@ import PropTypes from 'prop-types';
  */
 const LocationSelector = ({ locations, location, setLocation }) => {
   return (
-    <select className='location-select'
+    <select className='location-select' name='location-select'
+      required='required'
       value={location}
       onChange={e => { setLocation(e.target.value === "" ? null : parseInt(e.target.value, 10)) }}>
-      <option disabled hidden value='-1' style={{'color': 'gray'}}>Choose a location</option>>
+      <option hidden value=''>Choose a location</option>>
       {locations.map(([k, locationName]) => <option key={k} value={k}>{locationName}</option>)}
     </select>
   );

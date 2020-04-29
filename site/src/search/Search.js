@@ -150,7 +150,7 @@ const Search = () => {
             <LocationSelector
               locations={Object.entries(locationNames)}
               location={location}
-              setLocation={updateLocation}
+              setLocation={l => (l === '') ? -1 : updateLocation(l)}
             />
           </div>
           <div className='keyword-search'>
