@@ -20,7 +20,7 @@ export default class App extends Component {
                 <a href='https://restaurant-match-v1.herokuapp.com'>Prototype 1</a>
               </li>
               <li>
-                <a href='https://restaurant-match.herokuapp.com'>Prototype 2</a>
+                <a href='https://restaurant-match-v2.herokuapp.com'>Prototype 2</a>
               </li>
             </ul>
           </nav>
