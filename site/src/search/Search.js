@@ -85,7 +85,7 @@ const Search = () => {
     let likesString = likes.map(obj => obj['name']).toString().replace(/ /g, '%20');
     let dislikesString = dislikes.map(obj => obj['name']).toString().replace(/ /g, '%20');
 
-    baseURL += `${(currKeywords ? '?keywords=' + keywordsString : '')}`;
+    baseURL += `${(currKeywords.length ? '?keywords=' + keywordsString : '')}`;
     if (currLocation >= 0)
       baseURL += `${(currKeywords ? '&' : '?')}location=${locString}`;
     if (likes.length)
