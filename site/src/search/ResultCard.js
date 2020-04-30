@@ -30,6 +30,9 @@ const ResultCard = ({ name, distance, rating, url, image_url, location, keywords
             </div>
           </div>
         </div>
+        <div className="image-box">
+          <img src={image_url}></img>
+        </div>
       </div>
     </div>
   );
