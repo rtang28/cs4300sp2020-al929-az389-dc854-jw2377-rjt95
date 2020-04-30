@@ -89,7 +89,7 @@ const Search = () => {
 
     baseURL += `${(currKeywords.length ? '?keywords=' + keywordsString : '')}`;
     if (currLocation >= 0)
-      baseURL += `${(currKeywords ? '&' : '?')}location=${locString}`;
+      baseURL += `${(currKeywords.length ? '&' : '?')}location=${locString}`;
     if (likes.length)
       baseURL += `&likes=${likesString}`;
     if (dislikes.length)
