@@ -47,8 +47,10 @@ const Search = () => {
     updateKeywords(temp);
   }
 
-  const locationNames = { 0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
-                          5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville' };
+  const locationNames = {
+    0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
+    5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville'
+  };
 
   useEffect(() => {
     const loadRestaurants = async () => {
@@ -121,8 +123,7 @@ const Search = () => {
       let query_url = `${window.location}yelp?id=${id}`;
       let response = await (fetch(query_url, { method: 'GET' }));
       console.log(response);
-      let json = await (response.json());
-      let yelp_data = json;
+      let yelp_data = await (response.json());
       console.log(yelp_data);
       restaurants[i].url = yelp_data.url;
       restaurants[i].yelp_rating = yelp_data.rating;
@@ -159,7 +160,7 @@ const Search = () => {
               suggestions={location >= 0 ? terms[locationNames[location]] : []}
               handleAddition={addKeyword}
               handleDelete={removeKeyword}
-              placeholder={'Enter some keywords...'}/>
+              placeholder={'Enter some keywords...'} />
           </div>
           <button className='submit' type='submit'>Search!</button>
         </div>
