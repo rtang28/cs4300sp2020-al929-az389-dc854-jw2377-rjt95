@@ -1,7 +1,7 @@
 import React from "react";
 import "./ResultCard.css";
 
-const ResultCard = ({ name, distance, rating, url, image_url, location, keywords }) => {
+const ResultCard = ({ name, score, rating, url, image_url, location, keywords }) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -18,7 +18,7 @@ const ResultCard = ({ name, distance, rating, url, image_url, location, keywords
               </a>
             </div>
             <div className="card-rating">
-              <h5 className="card-rating-text">Yelp Rating: {rating}</h5>
+              <h5 className="card-rating-text">Similarity: {score.toFixed(2)} // Yelp Rating: {rating}</h5>
             </div>
           </div>
           <div className="row2">
@@ -29,6 +29,9 @@ const ResultCard = ({ name, distance, rating, url, image_url, location, keywords
               <h6 className="card-keywords-text">{keywords ? keywords.join(", ") : ""}</h6>
             </div>
           </div>
+        </div>
+        <div className="image-box">
+          <img src={image_url}></img>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ const Results = ({ results, status }) => {
     let elementsToRender;
     switch (status) {
       case 'loading':
-        elementsToRender = <ReactLoading type='bars' color='lightblue'/>
+        elementsToRender = <ReactLoading type='bars' color='lightblue' />
         break;
 
       case 'complete':
@@ -22,7 +22,7 @@ const Results = ({ results, status }) => {
                 <ResultCard
                   name={result.name}
                   key={result.name}
-                  distance={result.distance}
+                  score={result.score}
                   rating={result.yelp_rating}
                   url={result.url}
                   image_url={result.image_url}
