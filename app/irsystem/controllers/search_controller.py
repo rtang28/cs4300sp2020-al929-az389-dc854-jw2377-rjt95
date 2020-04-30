@@ -10,22 +10,21 @@ from ..models.cossearch import CosineSearch
 
 search_model = CosineSearch()
 DATADIR = os.path.abspath(os.path.join(app.instance_path, "..", "data"))
+YELP_TOKEN = os.environ.get('YELP_API_KEY')
 
 @irsystem.route('/search', methods=['GET'])
 def search():
-	keywords = request.args.get('keywords', None)
+	keywords = request.args.get('keywords', "")
 	location = request.args.get('location', None)
 	if location == 'Pittsburgh':
 		location = 'Pittsburg'
 	likes = request.args.get('likes', "")
 	dislikes = request.args.get('dislikes', "")
-	if keywords and location:
+	if location:
 		results = search_model.search(keywords, location, likes, dislikes)
 	else:
 		results = []
 	return http_resource(results, "results")
-
-YELP_TOKEN = os.environ.get('YELP_API_KEY')
 
 def get_auth_dict():
     return {'Authorization' : "Bearer " + YELP_TOKEN}

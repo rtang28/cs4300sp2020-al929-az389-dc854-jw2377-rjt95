@@ -51,12 +51,16 @@ class CosineSearch:
         if likes == "":
             likes = []
         else:
-            likes=likes.split(',')
+            likes = likes.split(',')
         if dislikes == "":
             dislikes=[]
         else:
             dislikes = dislikes.split(',')
-        return self.query(query.split(','), self.tdmatrix, likes, dislikes)
+        if query == "":
+            query = []
+        else:
+            query = query.split(',')
+        return self.query(query, self.tdmatrix, likes, dislikes)
 
     # def vectorize_query(self, query):
     #     #Returns a vector representation of the tokens the user inputs
@@ -194,7 +198,7 @@ class CosineSearch:
                     if self.id_to_name[result_id] != name and self.id_to_name[result_id] not in name and name not in self.id_to_name[result_id]:
                         liked_final += [result_id]
         if dislikes != []:
-            for r_id in likes:
+            for r_id in dislikes:
                 name = self.id_to_name[r_id]
                 for result_id in ranked_results:
                     if self.id_to_name[result_id] != name and self.id_to_name[result_id] not in name and name not in self.id_to_name[result_id]:
