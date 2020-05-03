@@ -6,7 +6,7 @@ import requests
 import os
 from flask import jsonify
 import json
-from ..models.cossearch import CosineSearch
+from ..models.final_model import CosineSearch
 
 search_model = CosineSearch()
 DATADIR = os.path.abspath(os.path.join(app.instance_path, "..", "data"))

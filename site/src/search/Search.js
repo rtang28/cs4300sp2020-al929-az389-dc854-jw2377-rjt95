@@ -2,6 +2,7 @@ import React, { useState, Fragment, useEffect } from 'react';
 import ReactTags from 'react-tag-autocomplete';
 import LocationSelector from './LocationSelector';
 import Results from './Results';
+import AdvancedSearch from './AdvancedSearch'
 import './Search.css';
 import './ReactTags.css';
 
@@ -94,7 +95,7 @@ const Search = () => {
     let dislikesString = dislikes.map(obj => obj['name']).toString().replace(/ /g, '%20');
     let weightsString;
     if (keywordsWeight !== 1.0 || likesWeight !== 0.8 || dislikesWeight !== 0.2) {
-      let weightsString = [keywordsWeight, likesWeight, dislikesWeight].toString();
+      weightsString = [keywordsWeight, likesWeight, dislikesWeight].toString();
       console.log(weightsString);
     }
 
@@ -105,8 +106,9 @@ const Search = () => {
       baseURL += `&likes=${likesString}`;
     if (dislikes.length)
       baseURL += `&dislikes=${dislikesString}`;
-    if (weightsString)
-      baseURL +=`weights=${weightsString}`;
+    if (weightsString) {
+      baseURL +=`&weights=${weightsString}`;
+    }
     return baseURL;
   };
 
@@ -198,35 +200,22 @@ const Search = () => {
         </div>
         <div className='form-row-3'>
           <div className='advanced-search-toggle'>
-            <label class="switch-box" id="switch-box">
+            <label className="switch-box" id="switch-box">
               <input type="checkbox" onChange={() => updateShowAdvanced(!showAdvanced)}></input>
-              <span class="switch"></span>
+              <span className="switch"></span>
             </label>
-            <label for="switch-box" id="toggle-label">Toggle Advanced Search</label>
+            <label htmlFor="switch-box" id="toggle-label">Toggle Advanced Search</label>
           </div>
-          {showAdvanced && <div className='advanced-search' id='advanced-search'>
-            <div className='advanced-search-title'>
-              <b>Adjust Importance of Each Input</b>
-            </div>
-            <div className='slider'>
-              <input type="range" id="keywords-range" class="range" min={0.0} max={1.0} value={keywordsWeight} step={0.1} onChange={(e) => updateKeywordsWeight(e.target.value)}></input>
-              <label htmlFor="keywords-range"> Keywords: {keywordsWeight}</label>
-            </div>
-            <div className='slider'>
-              <input type="range" id="likes-range" class="range" min={0.0} max={1.0} value={likesWeight} step={0.1} onChange={(e) => updateLikesWeight(e.target.value)}></input>
-              <label htmlFor="likes-range"> Likes: {likesWeight}</label>
-            </div>
-            <div className='slider'>
-              <input type="range" id="dislikes-range" class="range" min={0.0} max={1.0} value={dislikesWeight} step={0.1} onChange={(e) => updateDislikesWeight(e.target.value)}></input>
-              <label htmlFor="dislikes-range"> Dislikes: {dislikesWeight}</label>
-            </div>
-          </div>}
+          {showAdvanced && <AdvancedSearch
+            keywordsWeight={keywordsWeight} likesWeight={likesWeight} dislikesWeight={dislikesWeight}
+            updateKeywordsWeight={updateKeywordsWeight} updateLikesWeight={updateLikesWeight} updateDislikesWeight={updateDislikesWeight}
+          />}
         </div>
       </form>
       <div className='results-area'>
         {queryStatus !== 'empty' && <Results results={results} status={queryStatus} />}
       </div>
-    </Fragment >
+    </Fragment>
   );
 }
 
