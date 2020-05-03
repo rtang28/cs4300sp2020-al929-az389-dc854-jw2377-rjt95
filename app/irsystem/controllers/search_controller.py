@@ -7,6 +7,7 @@ import os
 from flask import jsonify
 import json
 from ..models.final_model import CosineSearch
+from urllib.parse import unquote
 
 search_model = CosineSearch()
 DATADIR = os.path.abspath(os.path.join(app.instance_path, "..", "data"))
@@ -14,12 +15,12 @@ YELP_TOKEN = os.environ.get('YELP_API_KEY')
 
 @irsystem.route('/search', methods=['GET'])
 def search():
-	keywords = request.args.get('keywords', "")
+	keywords = unquote(request.args.get('keywords', ""))
 	location = request.args.get('location', None)
 	if location == 'Pittsburgh':
 		location = 'Pittsburg'
-	likes = request.args.get('likes', "")
-	dislikes = request.args.get('dislikes', "")
+	likes = unquote(request.args.get('likes', ""))
+	dislikes = unquote(request.args.get('dislikes', ""))
 	a, b, c = (request.args.get('weights', '1,0.8,0.2')).split(',')
 
 	if location:
