@@ -21,7 +21,7 @@ class CosineSearch:
             self.city_word_idx = eval(inf.read())
 
 
-    def search(self, query, location, likes, dislikes, a=1, b=0.8, c=0.2):
+    def search(self, query, location, likes, dislikes, a, b, c):
 
         if location in ['Las Vegas', 'Phoenix', 'Pittsburg', 'Danville', 'Madison']:
             self.tdmatrix = self.l1[location]
@@ -122,14 +122,14 @@ class CosineSearch:
         # turn liked and dislikes restaurant names into business ids
         new_likes = []
         for r in likes:
-            for ids in name_to_id[r]:
+            for ids in self.name_to_id[r]:
                 if ids in self.id_to_name:
                     new_likes += [ids]
                     break
         
         new_dislikes = []
         for r in dislikes:
-            for ids in name_to_id[r]:
+            for ids in self.name_to_id[r]:
                 if ids in self.id_to_name:
                     new_dislikes += [ids]
                     break
@@ -279,7 +279,7 @@ class CosineSearch:
             restaurant_dict['score'] = new_r_to_sim[first_gem]
             restaurant_dict['matched_categories'] = []
             restaurant_dict['keywords'] = []
-            restaurant_dict['is_gem'] = final[counter] in self.hidden_gems
+            restaurant_dict['is_gem'] = True
             final_result.append(restaurant_dict) 
         
         return final_result
