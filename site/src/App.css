@@ -17,8 +17,14 @@ nav li {
 }
 
 nav a {
+  display: inline-block;
+  padding: 2vh 0; /* increase clickable region */
   color: black;
   text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
 }
 
 nav ul > li.prot1 {

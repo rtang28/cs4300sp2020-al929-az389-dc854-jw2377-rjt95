@@ -3,11 +3,9 @@ import ReactTags from 'react-tag-autocomplete';
 import LocationSelector from './LocationSelector';
 import Results from './Results';
 import './Search.css';
+import './ReactTags.css';
 
 const Search = () => {
-  /**
-   * 
-   */
   const [keywords, updateKeywords] = useState([]);
   const [location, updateLocation] = useState(-1);
   const [likes, updateLikes] = useState([]);
@@ -56,8 +54,8 @@ const Search = () => {
   }
 
   const locationNames = {
-    0: 'Montreal', 1: 'Las Vegas', 2: 'Phoenix', 3: 'Pittsburgh', 4: 'Toronto',
-    5: 'Cleveland', 6: 'Calgary', 7: 'Charlotte', 8: 'Madison', 9: 'Danville'
+    0: 'Montreal, QC', 1: 'Las Vegas, NV', 2: 'Phoenix, AZ', 3: 'Pittsburgh, PA', 4: 'Toronto, ON',
+    5: 'Cleveland, OH', 6: 'Calgary, AB', 7: 'Charlotte, NC', 8: 'Madison, WI', 9: 'Danville, IL'
   };
 
   useEffect(() => {
@@ -91,7 +89,7 @@ const Search = () => {
   const buildQueryURLFromState = (currKeywords, currLocation) => {
     let baseURL = `${window.location}search`;
     let keywordsString = currKeywords.map(obj => obj['name']).toString().replace(/ /g, '%20');
-    let locString = `${locationNames[currLocation]}`;
+    let locString = `${locationNames[currLocation].split(',')[0]}`;
     let likesString = likes.map(obj => obj['name']).toString().replace(/ /g, '%20');
     let dislikesString = dislikes.map(obj => obj['name']).toString().replace(/ /g, '%20');
 
@@ -165,10 +163,10 @@ const Search = () => {
           <div className='keyword-search'>
             <ReactTags
               tags={keywords}
-              suggestions={location >= 0 ? terms[locationNames[location]] : []}
+              suggestions={location >= 0 ? terms[locationNames[location].split(',')[0]] : []}
               handleAddition={addKeyword}
               handleDelete={removeKeyword}
-              placeholder={'Enter some keywords...'} />
+              placeholder={keywords.length ? '' : 'Enter some keywords...'} />
           </div>
           <button className='submit' type='submit'>Search!</button>
         </div>
@@ -176,7 +174,7 @@ const Search = () => {
           <div className='input-restaurant likes'>
             <ReactTags
               tags={likes}
-              suggestions={location >= 0 ? restaurants[locationNames[location]] : []}
+              suggestions={location >= 0 ? restaurants[locationNames[location].split(',')[0]] : []}
               handleAddition={addLike}
               handleDelete={removeLike}
               placeholder={likes.length ? '' : 'Enter restaurants you like...'}
@@ -185,7 +183,7 @@ const Search = () => {
           <div className='input-restaurant dislikes'>
             <ReactTags
               tags={dislikes}
-              suggestions={location >= 0 ? restaurants[locationNames[location]] : []}
+              suggestions={location >= 0 ? restaurants[locationNames[location].split(',')[0]] : []}
               handleAddition={addDislike}
               handleDelete={removeDislike}
               placeholder={dislikes.length ? '' : 'Enter restaurants you don\'t like...'}

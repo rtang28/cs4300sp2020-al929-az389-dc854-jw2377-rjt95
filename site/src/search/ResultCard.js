@@ -31,7 +31,7 @@ const ResultCard = ({ name, score, rating, url, image_url, location, keywords })
           </div>
         </div>
         <div className="image-box">
-          <img src={image_url}></img>
+          <img src={image_url} alt={`${name}`}></img>
         </div>
       </div>
     </div>
