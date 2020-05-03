@@ -8,16 +8,16 @@ const AdvancedSearch = ({ keywordsWeight, likesWeight, dislikesWeight, updateKey
         <b>Adjust Importance of Each Input</b>
       </div>
       <div className='slider'>
-        <input type="range" id="keywords-range" className="range" min={0.0} max={1.0} value={keywordsWeight} step={0.1} onChange={(e) => updateKeywordsWeight(e.target.value)}></input>
-        <label htmlFor="keywords-range"> Keywords: {keywordsWeight}</label>
+        <input type="range" id="keywords-range" className="range" min={0} max={10} value={keywordsWeight * 10} step={1} onChange={(e) => updateKeywordsWeight(e.target.value / 10)}></input>
+        <label htmlFor="keywords-range"> Keywords: {keywordsWeight * 10}</label>
       </div>
       <div className='slider'>
-        <input type="range" id="likes-range" className="range" min={0.0} max={1.0} value={likesWeight} step={0.1} onChange={(e) => updateLikesWeight(e.target.value)}></input>
-        <label htmlFor="likes-range"> Likes: {likesWeight}</label>
+        <input type="range" id="likes-range" className="range" min={0} max={10} value={likesWeight * 10} step={1} onChange={(e) => updateLikesWeight(e.target.value / 10)}></input>
+        <label htmlFor="likes-range"> Likes: {likesWeight * 10}</label>
       </div>
       <div className='slider'>
-        <input type="range" id="dislikes-range" className="range" min={0.0} max={1.0} value={dislikesWeight} step={0.1} onChange={(e) => updateDislikesWeight(e.target.value)}></input>
-        <label htmlFor="dislikes-range"> Dislikes: {dislikesWeight}</label>
+        <input type="range" id="dislikes-range" className="range" min={0} max={10} value={dislikesWeight * 10} step={1} onChange={(e) => updateDislikesWeight(e.target.value / 10)}></input>
+        <label htmlFor="dislikes-range"> Dislikes: {dislikesWeight * 10}</label>
       </div>
     </div>
   );
