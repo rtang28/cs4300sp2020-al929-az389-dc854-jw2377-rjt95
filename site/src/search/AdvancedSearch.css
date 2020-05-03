@@ -1,0 +1,25 @@
+.advanced-search {
+  width: 100%;
+}
+
+.advanced-search-title {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+.slider {
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.range {
+  width: 50%;
+  opacity: 0.7;
+}
+
+.range:hover {
+  opacity: 1;
+}
