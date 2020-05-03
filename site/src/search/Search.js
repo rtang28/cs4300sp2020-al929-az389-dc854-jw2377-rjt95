@@ -195,16 +195,16 @@ const Search = () => {
         <div className='form-row-3'>
           <button className='toggle-advanced-search' type="button" onClick={() => updateShowAdvanced(!showAdvanced)}>Toggle Advanced Search...</button>
           {showAdvanced && <div className='advanced-search' id='advanced-search'>
-            <div className='keywords-range-container'>
-              <input type="range" id="keywords-range" name="keywords-range" min={0.0} max={1.0} value={keywordsWeight} step={0.1} onChange={(e) => updateKeywordsWeight(e.target.value)}></input>
+            <div className='slider'>
+              <input type="range" id="keywords-range" class="range" min={0.0} max={1.0} value={keywordsWeight} step={0.1} onChange={(e) => updateKeywordsWeight(e.target.value)}></input>
               <label htmlFor="keywords-range">Keywords: {keywordsWeight}</label>
             </div>
-            <div className='likes-range-container'>
-              <input type="range" id="likes-range" name="likes-range" min={0.0} max={1.0} value={likesWeight} step={0.1} onChange={(e) => updateLikesWeight(e.target.value)}></input>
+            <div className='slider'>
+              <input type="range" id="likes-range" class="range" min={0.0} max={1.0} value={likesWeight} step={0.1} onChange={(e) => updateLikesWeight(e.target.value)}></input>
               <label htmlFor="likes-range">Likes: {likesWeight}</label>
             </div>
-            <div className='dislikes-range-container'>
-              <input type="range" id="dislikes-range" name="dislikes-range" min={0.0} max={1.0} value={dislikesWeight} step={0.1} onChange={(e) => updateDislikesWeight(e.target.value)}></input>
+            <div className='slider'>
+              <input type="range" id="dislikes-range" class="range" min={0.0} max={1.0} value={dislikesWeight} step={0.1} onChange={(e) => updateDislikesWeight(e.target.value)}></input>
               <label htmlFor="dislikes-range">Dislikes: {dislikesWeight}</label>
             </div>
           </div>}

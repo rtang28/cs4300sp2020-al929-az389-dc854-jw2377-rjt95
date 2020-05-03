@@ -5,12 +5,6 @@
   justify-content: center;
 }
 
-.form-row-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
 .keyword-search {
   flex: 2;
 }
@@ -21,6 +15,12 @@
   font-size: 18px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100%;
+}
+
+.form-row-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .form-row-1 > button {
@@ -43,6 +43,20 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  width: 100%;
+}
+
+.range {
+  width: 100%;
+  opacity: 0.7;
+}
+
+.range:hover {
+  opacity: 1;
 }
 
 .input-restaurant {
