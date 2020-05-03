@@ -20,7 +20,7 @@ def search():
 		location = 'Pittsburg'
 	likes = request.args.get('likes', "")
 	dislikes = request.args.get('dislikes', "")
-	a, b, c = request.args.get('weights', [1, 0.8, 0.2])
+	a, b, c = (request.args.get('weights', '1,0.8,0.2')).split(',')
 
 	if location:
 		results = search_model.search(keywords, location, likes, dislikes, a, b, c)
