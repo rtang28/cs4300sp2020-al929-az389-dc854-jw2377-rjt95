@@ -11,9 +11,8 @@ DATADIR = os.path.abspath(os.path.join(app.instance_path, "..", "data"))
 class CosineSearch:
     def __init__(self):
 
-        ac1 = np.load(os.path.join(DATADIR,'all_cities1.npz'))
-        ac2 = np.load(os.path.join(DATADIR,'all_cities2.npz'))
-        self.td =[*ac1,*ac2]
+        self.l1 = np.load(os.path.join(DATADIR,'all_cities1.npz'))
+        self.l2 = np.load(os.path.join(DATADIR,'all_cities2.npz'))
         with open(os.path.join(DATADIR,'id_to_cat.txt'),'r') as inf:
             self.id_to_cat = eval(inf.read())
         with open(os.path.join(DATADIR, 'id_to_name.txt'),'r') as inf:
@@ -24,7 +23,10 @@ class CosineSearch:
 
     def search(self, query, location, likes, dislikes, a=1, b=0.8, c=0.2):
 
-        self.tdmatrix = self.td[location]
+        if location in ['Las Vegas', 'Phoenix', 'Pittsburg', 'Danville', 'Madison']:
+            self.tdmatrix = self.l1[location]
+        else:
+            self.tdmatrix = self.l2[location]
         with open(os.path.join(DATADIR, 'state_restaurant_to_index.txt'),'r') as inf:
             self.restaurant_to_index = eval(inf.read())[location]
         with open(os.path.join(DATADIR, 'state_index_to_restaurant.txt'),'r') as inf:
