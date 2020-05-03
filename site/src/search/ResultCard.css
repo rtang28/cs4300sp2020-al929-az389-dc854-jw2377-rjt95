@@ -48,6 +48,15 @@
     justify-content: space-between;
 }
 
+.card-title {
+    display: flex;
+    flex-direction: row;
+}
+
+.card-title a {
+    padding-right: 4px;
+}
+
 .row2 {
     display: flex;
     flex-direction: row;

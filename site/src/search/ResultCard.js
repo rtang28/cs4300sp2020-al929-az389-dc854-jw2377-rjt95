@@ -1,7 +1,11 @@
 import React from "react";
+/**
+ * Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+ */
+import { ReactComponent as Gem} from '../gem.svg';
 import "./ResultCard.css";
 
-const ResultCard = ({ name, score, rating, url, image_url, location, keywords }) => {
+const ResultCard = ({ name, isGem, score, rating, url, image_url, location, keywords }) => {
   return (
     <div className="card">
       <div className="card-body">
@@ -16,6 +20,7 @@ const ResultCard = ({ name, score, rating, url, image_url, location, keywords })
               >
                 <h5 className="card-title-text">{name}</h5>
               </a>
+              {isGem && <Gem height='20px' width='20px'/>}
             </div>
             <div className="card-rating">
               <h5 className="card-rating-text">Similarity: {score.toFixed(2)} // Yelp Rating: {rating}</h5>

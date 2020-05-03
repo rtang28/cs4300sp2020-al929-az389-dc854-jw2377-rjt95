@@ -21,6 +21,7 @@ const Results = ({ results, status }) => {
               {results.map(result => (
                 <ResultCard
                   name={result.name}
+                  isGem={false} // CHANGE ME TO STATE VAR LATER
                   key={result.name}
                   score={result.score}
                   rating={result.yelp_rating}
