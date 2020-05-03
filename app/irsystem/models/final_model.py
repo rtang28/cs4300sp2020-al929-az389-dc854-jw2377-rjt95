@@ -122,22 +122,14 @@ class CosineSearch:
         # turn liked and dislikes restaurant names into business ids
         new_likes = []
         for r in likes:
-<<<<<<< HEAD
-            for ids in name_to_id[r]:
-=======
             for ids in self.name_to_id[r]:
->>>>>>> a7b4ec4d61bbb61b22bb7c9082bda64afda023ba
                 if ids in self.id_to_name:
                     new_likes += [ids]
                     break
 
         new_dislikes = []
         for r in dislikes:
-<<<<<<< HEAD
-            for ids in name_to_id[r]:
-=======
             for ids in self.name_to_id[r]:
->>>>>>> a7b4ec4d61bbb61b22bb7c9082bda64afda023ba
                 if ids in self.id_to_name:
                     new_dislikes += [ids]
                     break
@@ -287,11 +279,7 @@ class CosineSearch:
             restaurant_dict['score'] = new_r_to_sim[first_gem]
             restaurant_dict['matched_categories'] = []
             restaurant_dict['keywords'] = []
-<<<<<<< HEAD
-            restaurant_dict['is_gem'] = final[counter] in self.hidden_gems
-=======
             restaurant_dict['is_gem'] = True
->>>>>>> a7b4ec4d61bbb61b22bb7c9082bda64afda023ba
             final_result.append(restaurant_dict)
 
         return final_result
