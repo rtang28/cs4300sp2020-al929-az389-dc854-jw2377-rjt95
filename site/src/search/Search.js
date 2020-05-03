@@ -93,6 +93,11 @@ const Search = () => {
     let locString = `${locationNames[currLocation].split(',')[0]}`;
     let likesString = likes.map(obj => obj['name']).toString().replace(/ /g, '%20');
     let dislikesString = dislikes.map(obj => obj['name']).toString().replace(/ /g, '%20');
+    let weightsString;
+    if (keywordsWeight !== 1.0 || likesWeight !== 0.8 || dislikesWeight !== 0.2) {
+      weightsString = [keywordsWeight, likesWeight, dislikesWeight].toString();
+      console.log(weightsString);
+    }
 
     baseURL += `${(currKeywords.length ? '?keywords=' + keywordsString : '')}`;
     if (currLocation >= 0)
@@ -101,7 +106,9 @@ const Search = () => {
       baseURL += `&likes=${likesString}`;
     if (dislikes.length)
       baseURL += `&dislikes=${dislikesString}`;
-
+    if (weightsString) {
+      baseURL +=`&weights=${weightsString}`;
+    }
     return baseURL;
   };
 
