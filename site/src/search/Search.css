@@ -86,8 +86,8 @@
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
   border-radius: 23px;
 }
 
@@ -100,8 +100,8 @@
   bottom: 3px;
   border-radius: 50%;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 input:checked + .switch {
@@ -116,32 +116,6 @@ input:checked + .switch:before {
   -webkit-transform: translateX(17px);
   -ms-transform: translateX(17px);
   transform: translateX(17px);
-}
-
-.advanced-search {
-  width: 100%;
-}
-
-.advanced-search-title {
-  display: flex;
-  justify-content: center;
-  padding: 8px;
-}
-
-.slider {
-  margin-left: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.range {
-  width: 50%;
-  opacity: 0.7;
-}
-
-.range:hover {
-  opacity: 1;
 }
 
 .input-restaurant {
