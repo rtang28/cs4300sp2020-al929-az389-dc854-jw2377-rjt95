@@ -5,14 +5,22 @@ import Results from './Results';
 import './Search.css';
 
 const Search = () => {
+  /**
+   * 
+   */
   const [keywords, updateKeywords] = useState([]);
   const [location, updateLocation] = useState(-1);
   const [likes, updateLikes] = useState([]);
   const [dislikes, updateDislikes] = useState([]);
   const [results, updateResults] = useState([]);
+  const [keywordsWeight, updateKeywordsWeight] = useState(1.0);
+  const [likesWeight, updateLikesWeight] = useState(0.8);
+  const [dislikesWeight, updateDislikesWeight] = useState(0.2);
+
   const [restaurants, updateRestaurants] = useState({});
   const [terms, updateTerms] = useState({});
   const [queryStatus, updateQueryStatus] = useState('empty');
+  const [showAdvanced, updateShowAdvanced] = useState(false);
 
   const addLike = rest => {
     if (!likes.some(l => l.id === rest.id))
@@ -184,11 +192,28 @@ const Search = () => {
             />
           </div>
         </div>
+        <div className='form-row-3'>
+          <button className='toggle-advanced-search' type="button" onClick={() => updateShowAdvanced(!showAdvanced)}>Toggle Advanced Search...</button>
+          {showAdvanced && <div className='advanced-search' id='advanced-search'>
+            <div className='keywords-range-container'>
+              <input type="range" id="keywords-range" name="keywords-range" min={0.0} max={1.0} value={keywordsWeight} step={0.1} onChange={(e) => updateKeywordsWeight(e.target.value)}></input>
+              <label htmlFor="keywords-range">Keywords: {keywordsWeight}</label>
+            </div>
+            <div className='likes-range-container'>
+              <input type="range" id="likes-range" name="likes-range" min={0.0} max={1.0} value={likesWeight} step={0.1} onChange={(e) => updateLikesWeight(e.target.value)}></input>
+              <label htmlFor="likes-range">Likes: {likesWeight}</label>
+            </div>
+            <div className='dislikes-range-container'>
+              <input type="range" id="dislikes-range" name="dislikes-range" min={0.0} max={1.0} value={dislikesWeight} step={0.1} onChange={(e) => updateDislikesWeight(e.target.value)}></input>
+              <label htmlFor="dislikes-range">Dislikes: {dislikesWeight}</label>
+            </div>
+          </div>}
+        </div>
       </form>
       <div className='results-area'>
         {queryStatus !== 'empty' && <Results results={results} status={queryStatus} />}
       </div>
-    </Fragment>
+    </Fragment >
   );
 }
 
