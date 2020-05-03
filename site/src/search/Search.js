@@ -54,6 +54,13 @@ const Search = () => {
     updateKeywords(temp);
   }
 
+  const setNewLocation = l => {
+    (l === '') ? updateLocation(-1) : updateLocation(l);
+    updateKeywords([]);
+    updateLikes([]);
+    updateDislikes([]);
+  }
+
   const locationNames = {
     0: 'Montreal, QC', 1: 'Las Vegas, NV', 2: 'Phoenix, AZ', 3: 'Pittsburgh, PA', 4: 'Toronto, ON',
     5: 'Cleveland, OH', 6: 'Calgary, AB', 7: 'Charlotte, NC', 8: 'Madison, WI', 9: 'Danville, IL'
@@ -89,10 +96,10 @@ const Search = () => {
 
   const buildQueryURLFromState = (currKeywords, currLocation) => {
     let baseURL = `${window.location}search`;
-    let keywordsString = currKeywords.map(obj => obj['name']).toString().replace(/ /g, '%20');
     let locString = `${locationNames[currLocation].split(',')[0]}`;
-    let likesString = likes.map(obj => obj['name']).toString().replace(/ /g, '%20');
-    let dislikesString = dislikes.map(obj => obj['name']).toString().replace(/ /g, '%20');
+    let keywordsString = encodeURIComponent(currKeywords.map(obj => obj['name']).toString());
+    let likesString = encodeURIComponent(likes.map(obj => obj['name']).toString());
+    let dislikesString = encodeURIComponent(dislikes.map(obj => obj['name']).toString());
     let weightsString;
     if (keywordsWeight !== 1.0 || likesWeight !== 0.8 || dislikesWeight !== 0.2) {
       weightsString = [keywordsWeight, likesWeight, dislikesWeight].toString();
@@ -142,7 +149,7 @@ const Search = () => {
       restaurants[i].url = yelp_data.url;
       restaurants[i].yelp_rating = yelp_data.rating;
       if (yelp_data.location) {
-        restaurants[i].location = yelp_data.location.city;
+        restaurants[i].location = `${yelp_data.location.city}, ${yelp_data.location.state}`;
       }
       restaurants[i].image_url = yelp_data.image_url;
     }
@@ -165,7 +172,7 @@ const Search = () => {
             <LocationSelector
               locations={Object.entries(locationNames)}
               location={location}
-              setLocation={l => (l === '') ? -1 : updateLocation(l)}
+              setLocation={setNewLocation}
             />
           </div>
           <div className='keyword-search'>
