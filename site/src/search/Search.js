@@ -193,19 +193,28 @@ const Search = () => {
           </div>
         </div>
         <div className='form-row-3'>
-          <button className='toggle-advanced-search' type="button" onClick={() => updateShowAdvanced(!showAdvanced)}>Toggle Advanced Search...</button>
+          <div className='advanced-search-toggle'>
+            <label class="switch-box" id="switch-box">
+              <input type="checkbox" onChange={() => updateShowAdvanced(!showAdvanced)}></input>
+              <span class="switch"></span>
+            </label>
+            <label for="switch-box" id="toggle-label">Toggle Advanced Search</label>
+          </div>
           {showAdvanced && <div className='advanced-search' id='advanced-search'>
+            <div className='advanced-search-title'>
+              <b>Adjust Importance of Each Input</b>
+            </div>
             <div className='slider'>
               <input type="range" id="keywords-range" class="range" min={0.0} max={1.0} value={keywordsWeight} step={0.1} onChange={(e) => updateKeywordsWeight(e.target.value)}></input>
-              <label htmlFor="keywords-range">Keywords: {keywordsWeight}</label>
+              <label htmlFor="keywords-range"> Keywords: {keywordsWeight}</label>
             </div>
             <div className='slider'>
               <input type="range" id="likes-range" class="range" min={0.0} max={1.0} value={likesWeight} step={0.1} onChange={(e) => updateLikesWeight(e.target.value)}></input>
-              <label htmlFor="likes-range">Likes: {likesWeight}</label>
+              <label htmlFor="likes-range"> Likes: {likesWeight}</label>
             </div>
             <div className='slider'>
               <input type="range" id="dislikes-range" class="range" min={0.0} max={1.0} value={dislikesWeight} step={0.1} onChange={(e) => updateDislikesWeight(e.target.value)}></input>
-              <label htmlFor="dislikes-range">Dislikes: {dislikesWeight}</label>
+              <label htmlFor="dislikes-range"> Dislikes: {dislikesWeight}</label>
             </div>
           </div>}
         </div>
