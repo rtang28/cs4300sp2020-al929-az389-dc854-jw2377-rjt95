@@ -23,7 +23,7 @@ def search():
 	a, b, c = (request.args.get('weights', '1,0.8,0.2')).split(',')
 
 	if location:
-		results = search_model.search(keywords, location, likes, dislikes, a, b, c)
+		results = search_model.search(keywords, location, likes, dislikes, float(a), float(b), float(c))
 	else:
 		results = []
 	return http_resource(results, "results")
