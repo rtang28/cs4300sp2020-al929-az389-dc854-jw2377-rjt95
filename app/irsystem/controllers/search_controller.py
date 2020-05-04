@@ -46,7 +46,7 @@ def yelp():
 def restaurants():
 	with open(os.path.join(DATADIR, 'location_restaurants.json'),'r') as f:
 		restaurant_dir = json.load(f)
-	restaurant_dir = {k: list.map(ftfy.fix_text, v) for k, v in restaurant_dir.items()}
+	restaurant_dir = {k: list(map(ftfy.fix_text, v)) for k, v in restaurant_dir.items()}
 	return json.dumps(restaurant_dir)
 
 @irsystem.route('/terms', methods=['GET'])
