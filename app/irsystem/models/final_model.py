@@ -179,8 +179,12 @@ class CosineSearch:
         if dislikes != []:
             dislikes_vector = dislikes_vector / len(dislikes)
 
-        result_vector = (a*query_vector) + (b*likes_vector) - (c*dislikes_vector)
-        result_vector = np.where(result_vector < 0, 0, result_vector)
+        if len(query) < 1 and len(likes) < 1:
+            result_vector = c*dislikes_vector
+        else:
+            result_vector = (a*query_vector) + (b*likes_vector) - (c*dislikes_vector)
+            result_vector = np.where(result_vector < 0, 0, result_vector)
+
 
         restaurant_to_sim = {}
         if matched_categories != []:
@@ -210,7 +214,7 @@ class CosineSearch:
             for r_id in likes:
                 name = self.id_to_name[r_id]
                 for result_id in ranked_results:
-                    if self.id_to_name[result_id] != name and self.id_to_name[result_id] not in name and name not in self.id_to_name[result_id]:
+                    if self.id_to_name[result_id] != name and self.id_to_name[result_id] not in name and name not in self.id_to_name[result_id] and "Restaurants" in self.id_to_cat[result_id]:
                         disliked_final += [result_id]
 
         if likes == [] and dislikes == []:
@@ -218,7 +222,7 @@ class CosineSearch:
         elif likes != [] and dislikes == []:
             final = liked_final
         elif likes == [] and dislikes != []:
-            final = disliked_final
+            final = disliked_final[::-1]
         else:
             for i in liked_final:
                 if i in disliked_final:
