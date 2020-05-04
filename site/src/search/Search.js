@@ -114,7 +114,7 @@ const Search = () => {
     if (dislikes.length)
       baseURL += `&dislikes=${dislikesString}`;
     if (weightsString) {
-      baseURL +=`&weights=${weightsString}`;
+      baseURL += `&weights=${weightsString}`;
     }
     return baseURL;
   };

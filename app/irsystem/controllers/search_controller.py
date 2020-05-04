@@ -8,6 +8,7 @@ from flask import jsonify
 import json
 from ..models.final_model import CosineSearch
 from urllib.parse import unquote
+import ftfy
 
 search_model = CosineSearch()
 DATADIR = os.path.abspath(os.path.join(app.instance_path, "..", "data"))
@@ -44,7 +45,8 @@ def yelp():
 @irsystem.route('/restaurants', methods=['GET'])
 def restaurants():
 	with open(os.path.join(DATADIR, 'location_restaurants.json'),'r') as f:
-		restaurant_dir = eval(f.read())
+		restaurant_dir = json.load(f)
+	restaurant_dir = {k: list(map(ftfy.fix_text, v)) for k, v in restaurant_dir.items()}
 	return json.dumps(restaurant_dir)
 
 @irsystem.route('/terms', methods=['GET'])
