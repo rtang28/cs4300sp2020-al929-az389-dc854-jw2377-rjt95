@@ -14,8 +14,9 @@
     max-height: 120px;
 }
 
-.card h5, h6 {
+.card h5, .card h6 {
     margin: 2px;
+    color: var(--text-color);
 }
 
 .rows {
