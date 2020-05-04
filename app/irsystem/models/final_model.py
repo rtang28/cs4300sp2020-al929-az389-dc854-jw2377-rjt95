@@ -211,7 +211,7 @@ class CosineSearch:
                     if self.id_to_name[result_id] != name and self.id_to_name[result_id] not in name and name not in self.id_to_name[result_id]:
                         liked_final += [result_id]
         if dislikes != []:
-            for r_id in likes:
+            for r_id in dislikes:
                 name = self.id_to_name[r_id]
                 for result_id in ranked_results:
                     if self.id_to_name[result_id] != name and self.id_to_name[result_id] not in name and name not in self.id_to_name[result_id] and "Restaurants" in self.id_to_cat[result_id]:
