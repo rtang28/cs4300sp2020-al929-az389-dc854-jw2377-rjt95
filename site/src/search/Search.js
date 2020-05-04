@@ -2,7 +2,8 @@ import React, { useState, Fragment, useEffect } from 'react';
 import ReactTags from 'react-tag-autocomplete';
 import LocationSelector from './LocationSelector';
 import Results from './Results';
-import AdvancedSearch from './AdvancedSearch'
+import AdvancedSearch from './AdvancedSearch';
+import HelpBox from './HelpBox';
 import './Search.css';
 import './ReactTags.css';
 
@@ -20,6 +21,7 @@ const Search = () => {
   const [terms, updateTerms] = useState({});
   const [queryStatus, updateQueryStatus] = useState('empty');
   const [showAdvanced, updateShowAdvanced] = useState(false);
+  const [showHelp, updateShowHelp] = useState(false);
 
   const addLike = rest => {
     if (!likes.some(l => l.id === rest.id))
@@ -166,6 +168,7 @@ const Search = () => {
 
   return (
     <Fragment>
+      {showHelp && <HelpBox updateShow={updateShowHelp} />}
       <form autoComplete='off' className='search-area' onSubmit={formSubmit}>
         <div className='form-row-1'>
           <div className='location-selector'>
@@ -181,7 +184,7 @@ const Search = () => {
               suggestions={location >= 0 ? terms[locationNames[location].split(',')[0]] : []}
               handleAddition={addKeyword}
               handleDelete={removeKeyword}
-              placeholder={keywords.length ? '' : 'Enter some keywords...'} />
+              placeholder={keywords.length ? '' : 'Enter some keywords (e.g. tacos, authentic, fast)'} />
           </div>
           <button className='submit' type='submit'>Search!</button>
         </div>
@@ -214,7 +217,7 @@ const Search = () => {
               </label>
               <label htmlFor="switch-box" id="toggle-label">Toggle Advanced Search</label>
             </div>
-            <span className='help'>Help</span>
+            <span className='help' onClick={() => updateShowHelp(true)}>Help</span>
           </div>
           {showAdvanced && <AdvancedSearch
             keywordsWeight={keywordsWeight} likesWeight={likesWeight} dislikesWeight={dislikesWeight}
