@@ -58,6 +58,10 @@
     text-decoration-color: var(--link-color);
 }
 
+.card-title-text {
+  color: var(--link-color) !important;
+}
+
 /* selects strokes in svg */
 #Shape {
   fill: var(--text-color);
