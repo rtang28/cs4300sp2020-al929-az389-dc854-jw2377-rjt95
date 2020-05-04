@@ -206,12 +206,15 @@ const Search = () => {
           </div>
         </div>
         <div className='form-row-3'>
-          <div className='advanced-search-toggle'>
-            <label className="switch-box" id="switch-box">
-              <input type="checkbox" onChange={() => updateShowAdvanced(!showAdvanced)}></input>
-              <span className="switch"></span>
-            </label>
-            <label htmlFor="switch-box" id="toggle-label">Toggle Advanced Search</label>
+          <div className='advanced-search-help-wrapper'>
+            <div className='advanced-search-toggle'>
+              <label className="switch-box" id="switch-box">
+                <input type="checkbox" onChange={() => updateShowAdvanced(!showAdvanced)}></input>
+                <span className="switch"></span>
+              </label>
+              <label htmlFor="switch-box" id="toggle-label">Toggle Advanced Search</label>
+            </div>
+            <span className='help'>Help</span>
           </div>
           {showAdvanced && <AdvancedSearch
             keywordsWeight={keywordsWeight} likesWeight={likesWeight} dislikesWeight={dislikesWeight}
