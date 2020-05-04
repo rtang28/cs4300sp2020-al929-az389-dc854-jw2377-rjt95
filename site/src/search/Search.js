@@ -181,7 +181,7 @@ const Search = () => {
           <div className='keyword-search'>
             <ReactTags
               tags={keywords}
-              suggestions={location >= 0 ? terms[locationNames[location].split(',')[0]] : []}
+              suggestions={(location !== '' && location >= 0) ? terms[locationNames[location].split(',')[0]] : []}
               handleAddition={addKeyword}
               handleDelete={removeKeyword}
               placeholder={keywords.length ? '' : 'Enter some keywords (e.g. tacos, authentic, fast)'} />
@@ -192,7 +192,7 @@ const Search = () => {
           <div className='input-restaurant likes'>
             <ReactTags
               tags={likes}
-              suggestions={location >= 0 ? restaurants[locationNames[location].split(',')[0]] : []}
+              suggestions={(location !== '' && location >= 0) ? restaurants[locationNames[location].split(',')[0]] : []}
               handleAddition={addLike}
               handleDelete={removeLike}
               placeholder={likes.length ? '' : 'Enter restaurants you like...'}
@@ -201,7 +201,7 @@ const Search = () => {
           <div className='input-restaurant dislikes'>
             <ReactTags
               tags={dislikes}
-              suggestions={location >= 0 ? restaurants[locationNames[location].split(',')[0]] : []}
+              suggestions={(location !== '' && location >= 0) ? restaurants[locationNames[location].split(',')[0]] : []}
               handleAddition={addDislike}
               handleDelete={removeDislike}
               placeholder={dislikes.length ? '' : 'Enter restaurants you don\'t like...'}
