@@ -3,10 +3,11 @@
   flex-wrap: wrap;
   position: relative;
   padding: 4px 8px 8px 8px;
-  border: 1px solid #D1D1D1;
+  border: var(--input-border-style);
 
   /* clicking anywhere will focus the input */
   cursor: text;
+  background-color: var(--input-bg-color);
 }
 
 .react-tags * {
@@ -15,7 +16,7 @@
 }
 
 .react-tags.is-focused {
-  border-color: #606060;
+  border-color: var(--input-focused-border-color);
 }
 
 .react-tags__selected {
@@ -64,6 +65,13 @@
   padding: 0;
   border: 0;
   outline: none;
+  background-color: var(--input-bg-color);
+  caret-color: var(--text-color);
+  color: var(--text-color);
+}
+
+.react-tags__search input::placeholder {
+  color: var(--placeholder-text-color);
 }
 
 .react-tags__search input::-ms-clear {

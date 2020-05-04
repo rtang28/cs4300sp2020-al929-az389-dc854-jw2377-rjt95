@@ -15,6 +15,9 @@
   font-size: 18px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100%;
+  background-color: var(--input-bg-color);
+  color: var(--text-color);
+  border: var(--input-border-style);
 }
 
 .location-select > option {
@@ -30,7 +33,7 @@
 .form-row-1 > button {
   border-radius: 0 4px 0 0;
   appearance: none;
-  border: none;
+  border: var(--input-border-style);
   min-width: 70px;
   font-size: 16px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -64,7 +67,7 @@
 .help {
   margin-left: auto;
   text-decoration: underline;
-  color: dodgerblue;
+  color: var(--link-color);
   cursor: pointer;
 }
 

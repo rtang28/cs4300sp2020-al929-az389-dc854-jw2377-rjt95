@@ -5,10 +5,18 @@
   padding-bottom: 4px
 }
 
+.advanced-search b, .advanced-search label {
+  color: var(--text-color);
+}
+
 .advanced-search-title {
   display: flex;
   justify-content: center;
   padding: 4px;
+}
+
+#toggle-label {
+  color: var(--text-color);
 }
 
 .slider {

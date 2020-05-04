@@ -24,8 +24,9 @@
 
 .modal-body {
   padding: 8px 20px;
-  background-color: white;
+  background-color: var(--bg-color);
   border-radius: 0 0 4px 4px;
+  color: var(--text-color);
 }
 
 .modal {

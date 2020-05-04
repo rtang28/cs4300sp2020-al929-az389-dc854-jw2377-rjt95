@@ -1,5 +1,37 @@
+:root {
+  --bg-color: white;
+  --text-color: black;
+  --theme-color: lightblue;
+  --nav-color: lightblue;
+  --nav-text-color: black;
+  --input-bg-color: #f9f9f9;
+  --placeholder-text-color: #011111;
+  --input-border-style: 1px solid #D1D1D1;
+  --input-focused-border-color: #606060;
+  --result-card-color: whitesmoke;
+  --link-color: dodgerblue;
+}
+
+[data-theme='dark'] {
+  --bg-color: #404040;
+  --text-color: white;
+  --theme-color: lightblue;
+  --nav-color: #444950;
+  --nav-text-color: lightblue;
+  --input-bg-color: #606770;
+  --placeholder-text-color: #DDDDDD;
+  --input-border-style: 1px solid #404040;
+  --input-focused-border-color: #404040;
+  --result-card-color: #606770;
+  --link-color: dodgerblue;
+}
+
+body {
+  background-color: var(--bg-color);
+}
+
 nav {
-  background-color: lightblue;
+  background-color: var(--theme-color);
   height: 8vh;
 }
 
@@ -27,16 +59,71 @@ nav a:hover {
   color: white;
 }
 
-nav ul > li.prot1 {
+.theme-switch-box {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 23px;
+  margin-left: 5px;
+}
+
+.theme-switch-box input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.theme-switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .3s;
+  transition: .3s;
+  border-radius: 23px;
+}
+
+.theme-switch:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 3px;
+  bottom: 3px;
+  border-radius: 50%;
+  background-color: white;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+input:checked + .theme-switch {
+  background-color: #444950;
+}
+
+input:focus + .theme-switch {
+  box-shadow: 0 0 1px #444950;
+}
+
+input:checked + .theme-switch:before {
+  -webkit-transform: translateX(17px);
+  -ms-transform: translateX(17px);
+  transform: translateX(17px);
+}
+
+nav ul > li.theme-switch-wrapper {
   margin-left: auto;
 }
 
 .title {
   margin-top: 15vh;
   text-align: center;
+  color: var(--text-color);
 }
 
-.about-container{
+.about-container {
   display:flex;
   flex-direction: column;
   justify-content: center;

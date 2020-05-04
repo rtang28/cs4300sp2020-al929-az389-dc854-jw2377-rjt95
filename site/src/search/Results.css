@@ -10,6 +10,10 @@
   margin: 0 auto;
 }
 
+.results-area p {
+  color: var(--text-color);
+}
+
 .results-container {
   margin: 0 !important;
 }
