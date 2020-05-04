@@ -57,7 +57,15 @@ class Home extends Component {
 class About extends Component {
   render() {
     return (
-      <div id='about-placeholder'></div>
+      <div id='about-container' className='about-body'>
+        <div className='about-title'>
+          <h2>About</h2>
+        </div>
+        <div className='about-body'>
+          <p> Restaurant Match is a project by Alan Lin, Andy Zhu, David Chen, Jason Wong, and Ryan Tang for the final project of CS/INFO 4300 at Cornell University. </p>
+          <p> See our code&nbsp;<a href= "https://github.com/rtang28/cs4300sp2020-al929-az389-dc854-jw2377-rjt95">here</a>.</p>  
+        </div>
+      </div>                
     )
   }
 }
