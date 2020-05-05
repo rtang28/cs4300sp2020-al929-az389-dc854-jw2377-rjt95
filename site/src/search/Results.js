@@ -28,7 +28,8 @@ const Results = ({ results, status }) => {
                   url={result.url}
                   image_url={result.image_url}
                   location={result.location}
-                  keywords={result.matched_categories}
+                  keywords={result.keywords}
+                  categories={result.matched_categories}
                 />
               ))}
             </div>);
