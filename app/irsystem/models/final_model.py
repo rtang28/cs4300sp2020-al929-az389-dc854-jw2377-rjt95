@@ -221,8 +221,10 @@ class CosineSearch:
             final = ranked_results
         elif likes != [] and dislikes == []:
             final = liked_final
-        elif likes == [] and dislikes != []:
+        elif likes == [] and query == [] and dislikes != []:
             final = disliked_final[::-1]
+        elif likes == [] and dislikes != []:
+            final = disliked_final
         else:
             for i in liked_final:
                 if i in disliked_final:
