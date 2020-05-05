@@ -2,7 +2,7 @@
 .modal-content {
   position: fixed;
   max-width: 100%;
-  width: 60%;
+  width: 70%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -27,6 +27,28 @@
   background-color: var(--bg-color);
   border-radius: 0 0 4px 4px;
   color: var(--text-color);
+}
+
+.modal-body ul {
+  list-style-type: disc !important;
+}
+
+.modal-body p {
+  margin: 0;
+}
+
+.end-help {
+  margin-bottom: 20px !important;
+}
+
+.gem-title {
+  margin-right: 4px;
+}
+
+.gem-explanation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .modal {

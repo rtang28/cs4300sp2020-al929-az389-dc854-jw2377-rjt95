@@ -12,6 +12,10 @@ const Results = ({ results, status }) => {
         elementsToRender = <ReactLoading type='bars' color='lightblue' />
         break;
 
+      case 'empty-query':
+        elementsToRender = (<p>Make sure you've entered at least one of the following: keywords, liked restaurants, or disliked restaurants.</p>);
+        break;
+
       case 'complete':
         if (!results || !results.length)
           elementsToRender = (<p>No results found.</p>);

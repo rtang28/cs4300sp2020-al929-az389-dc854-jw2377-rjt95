@@ -122,7 +122,7 @@ const Search = () => {
   };
 
   const queryAPI = async () => {
-    if (keywords.length > 0 || location >= 0) {
+    if (keywords.length > 0 || likes.length > 0 || dislikes.length > 0) {
       try {
         const queryURL = buildQueryURLFromState(keywords, location);
         console.log(queryURL);
@@ -137,6 +137,9 @@ const Search = () => {
         console.error(error);
         updateQueryStatus('error');
       }
+    }
+    else {
+      updateQueryStatus('empty-query');
     }
   };
 
