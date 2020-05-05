@@ -49,10 +49,10 @@ const HelpBox = ({ updateShow }) => {
             <Gem height='20px' width='20px'/>
           </div>
           <p className='end-help'>
-            Popular eateries tend to dominate restaurant recommendation lists, and may steal the spotlight from other equally deserving food joints.
-            We believe in helping hidden gem restaurants shine and helping adventurous food aficionados find new favorite spots. Results with a
-            gem icon next to their names denote eateries that have good ratings but below-average counts of reviews, which we believe may be good
-            places to check out.
+            Popular eateries tend to dominate restaurant recommendation lists and steal the spotlight from other equally deserving food joints.
+            We believe in helping hidden gem restaurants shine and helping adventurous food aficionados find new favorites. Results with a gem
+            icon next to their names denote eateries that have good ratings but below-average counts of reviews, which we think are under-the-radar
+            places worth checking out.
           </p>
         </div>
       </div>

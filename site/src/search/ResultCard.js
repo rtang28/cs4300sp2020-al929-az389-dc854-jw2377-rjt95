@@ -23,7 +23,7 @@ const ResultCard = ({ name, isGem, score, rating, url, image_url, location, keyw
               {isGem && <Gem height='20px' width='20px' />}
             </div>
             <div className="card-rating">
-              <h5 className="card-rating-text">Similarity: {score.toFixed(2)} - Yelp Rating: {rating}</h5>
+              <h5 className="card-rating-text">Similarity: {`${(score * 100).toFixed(0)}%`} - Yelp Rating: {rating}</h5>
             </div>
           </div>
           <div className="row2">
